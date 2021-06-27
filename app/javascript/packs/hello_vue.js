@@ -8,6 +8,9 @@
 import Vue from 'vue'
 import App from '../app.vue'
 
+window.axios = require('axios');
+Vue.prototype.$axios = axios
+
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     render: h => h(App)
