@@ -1,0 +1,14 @@
+nav {
+  .main-menu img {
+    filter: drop-shadow(2px 4px 1px #BBB);
+  }
+
+  .main-menu ul li {
+    background-color: #0378A6;
+
+    &.active {
+      margin-left: 5px;
+      border-left: 5px solid #F2BE5C;
+    }
+  }
+}
