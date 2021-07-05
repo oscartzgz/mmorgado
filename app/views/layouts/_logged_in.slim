@@ -1,5 +1,6 @@
 .app-menu
-  = render 'shared/menu' if user_signed_in?
+  menu-desktop :controller-name="#{controller_name.to_json}"
+  / = render 'shared/menu' if user_signed_in?
 .app-header 
   = render 'shared/header' if user_signed_in?
 .app-content

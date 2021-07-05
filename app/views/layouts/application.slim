@@ -8,10 +8,10 @@ html
 
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-    / = javascript_pack_tag 'hello_vue' %>
+    = javascript_pack_tag 'vue', 'data-turbolinks-track': 'reload'
 
   body
-    main
+    main#app
       - unless user_signed_in?
         = render 'layouts/login'
       - else 
