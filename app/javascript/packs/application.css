@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 
-body {
+main {
   background-image: url(../images/SystemBG.png);
   background-repeat: no-repeat;
   background-size: cover;

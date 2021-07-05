@@ -1,9 +1,8 @@
-#appContainer
-  .app-menu
-    = render 'shared/menu' if user_signed_in?
-  .app-header 
-    = render 'shared/header' if user_signed_in?
-  .app-content
-    = yield
+.app-menu
+  = render 'shared/menu' if user_signed_in?
+.app-header 
+  = render 'shared/header' if user_signed_in?
+.app-content
+  = yield
 
 

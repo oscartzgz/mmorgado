@@ -1,0 +1,21 @@
+.absolute.bottom-0.top-0.left-0.right-0.flex.items-center.justify-items-center.justify-center.padding
+  .form-login-container.p-7.rounded-lg.text-white.shadow-2xl class="mx-5 sm:w-1/2 md:w-2/5 lg:w-1/5 " 
+    img.px-10 src=("#{asset_pack_path 'media/images/LogoMM.png'}") /
+    h2.text-center.font-bold.my-3 SYSTEM
+    p.text-xs Bienvenido! Ingresa Email y Contraseña para continuar
+    = form_for(resource, as: resource_name, url: session_path(resource_name), class: '') do |f|
+      .field
+        br/
+        = f.email_field :email, autofocus: true, autocomplete: "email",                                \
+          class: "w-full h-10 px-5 rounded opacity-80 text-gray-800 shadow-lg", placeholder: "Usuario"
+      .field
+        br/
+        = f.password_field :password, autocomplete: "current-password",                                   \
+          class: "w-full h-10 px-5 rounded opacity-80 text-gray-800 shadow-lg", placeholder: "Contraseña"
+      - if devise_mapping.rememberable?
+        .field.my-3
+          = f.check_box :remember_me
+          = f.label :remember_me, 'Recordarme'
+      .actions
+        = f.submit "Iniciar Sesión", class: 'devise-submit h-10 w-full rounded shadow mt-3'
+    = render "devise/shared/links"

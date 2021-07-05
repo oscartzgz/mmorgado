@@ -11,7 +11,8 @@ html
     / = javascript_pack_tag 'hello_vue' %>
 
   body
-    - unless user_signed_in?
-      = render 'layouts/login'
-    - else 
-      = render 'layouts/logged_in'
+    main
+      - unless user_signed_in?
+        = render 'layouts/login'
+      - else 
+        = render 'layouts/logged_in'

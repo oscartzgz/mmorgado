@@ -14,15 +14,14 @@
  *= require_self
  */
 
-#appContainer {
+main {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   display: grid;
-  grid-template-areas:
-    "menu header"
+  grid-template-areas: "menu header"
     "menu main";
   grid-template-rows: min-content 1fr;
   grid-template-columns: min-content 1fr;
