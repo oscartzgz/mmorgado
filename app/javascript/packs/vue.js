@@ -59,9 +59,15 @@
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
 // import App from '../app.vue'
-import MenuDesktop from '../src/MenuDesktop.vue'
+import UsersList from '../src/users/UsersList.vue'
 
 Vue.use(TurbolinksAdapter)
+
+import MenuDesktop from '../src/MenuDesktop.vue'
+Vue.component('menu-desktop', MenuDesktop)
+
+import UsersIndex from '../src/users/Index.vue'
+Vue.component('users-index', UsersIndex)
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
@@ -71,6 +77,6 @@ document.addEventListener('turbolinks:load', () => {
     //     message: "Can you say hello?"
     //   }
     // },
-    components: { MenuDesktop }
+    // components: { MenuDesktop, UsersList }
   })
 })

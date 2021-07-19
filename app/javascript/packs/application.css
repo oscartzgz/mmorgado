@@ -8,3 +8,38 @@ main {
 }
 
 @tailwind utilities;
+
+
+
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='number'],
+input[type='url'],
+input[type='date'],
+input[type='datetime-local'],
+input[type='month'],
+input[type='week'],
+input[type='time'],
+input[type='search'],
+input[type='tel'],
+input[type='checkbox'],
+input[type='radio'],
+select,
+select[multiple],
+textarea {
+  border: 1px solid gray;
+  border-radius: .3em;
+  height: 36px;
+  padding: .5em;
+  width: 100%;
+  margin-bottom: .5em;
+}
+
+input[type='checkbox'] {
+  height: 24px;
+}
+
+label {
+  font-weight: 100;
+}
