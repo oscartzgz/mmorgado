@@ -2,7 +2,7 @@ div.app-menu.flex
   nav.w-72
     .main-menu.flex.flex-col
       .px-5.py-8.bg-white
-        = image_tag  asset_path 'LogoMM', class: 'filter drop-shadow-lg'
+        = image_tag  image_path 'LogoMM.png', class: 'filter drop-shadow-lg'
     
       ul.flex.flex-col.gap-1.5.text-white.bg-white
         li.px-4.py-3.text-sm.flex.items-center.gap-5.cursor-pointer.hover:bg-blue-900 class="#{'active' if controller_name == 'dashboard' }"
