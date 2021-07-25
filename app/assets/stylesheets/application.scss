@@ -38,6 +38,16 @@ main {
     }
   }
 
+  .app_notifications {
+    .notice {
+      color: greenyellow;
+    }
+
+    .alert {
+      color: indianred;
+    }
+  }
+
   .app-menu {
     grid-area: menu;
   }

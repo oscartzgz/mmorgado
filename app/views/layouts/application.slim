@@ -16,7 +16,4 @@ html
       = render 'shared/header' if user_signed_in?
       = render 'shared/menu' if user_signed_in?
       .app-main class="#{'login' unless user_signed_in? }"
-        p.notice = notice
-        p.alert = alert
-
         = yield
