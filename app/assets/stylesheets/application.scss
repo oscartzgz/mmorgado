@@ -30,6 +30,14 @@ main {
   grid-template-rows: min-content 1fr;
   grid-template-columns: min-content 1fr;
 
+  .app-main {
+    &.login {
+      grid-area: menu / header / main;
+      align-self: center;
+      justify-self: center;
+    }
+  }
+
   .app-menu {
     grid-area: menu;
   }
