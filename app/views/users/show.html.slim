@@ -1,0 +1,24 @@
+.bg-white.m-16.p-5.rounded-lg.shadow
+  h1.text-lg Datos del usuario
+  p#notice = notice
+  
+  .containet
+    div = @user.username
+    div = @user.email
+    div = @user.profile&.name
+    div = @user.profile&.first_surname
+    div = @user.profile&.second_surname
+    div = @user.profile&.postal_code
+    div = @user.profile&.state
+    div = @user.profile&.location
+    div = @user.profile&.mobile_number
+    div = @user.profile&.suburb
+    div = @user.profile&.street
+    div = @user.profile&.ext_num
+    div = @user.profile&.int_num
+    div = @user.profile&.phone_number
+    div = @user.profile&.photo
+
+  => link_to 'Edit', edit_user_path(@user)
+  '|
+  =< link_to 'Back', users_path

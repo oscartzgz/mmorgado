@@ -1,0 +1,31 @@
+= form_with model: @user, autocomplete: :off, local: true do |f|
+  - if @user.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@user.errors.count, 'error')} prohibited this user from being saved:"
+      ul
+        - @user.errors.full_messages.each do |message|
+          li = message
+  .container
+    = f.fields_for :profile do |ff|
+      HOLA
+      = ff.text_field :name
+      = ff.text_field :first_surname
+      = ff.text_field :second_surname
+      = ff.text_field :postal_code
+      = ff.text_field :state
+      = ff.text_field :location
+      = ff.text_field :mobile_number
+      = ff.text_field :suburb
+      = ff.text_field :street
+      = ff.text_field :ext_num
+      = ff.text_field :int_num
+      = ff.text_field :phone_number
+      = ff.text_field :photo
+  
+  .conatiner
+    = f.text_field :username
+    = f.password_field :password, autocomplete: :off
+    = f.password_field :password_confirmation, autocomplete: :off
+
+  .actions 
+    = f.submit class: "float-right bg-blue-600 text-white rounded px-3 py-0.5"

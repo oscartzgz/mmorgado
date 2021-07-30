@@ -60,3 +60,24 @@ main {
     grid-area: main;
   }
 }
+
+#error_explanation {
+  border: 2px solid #FF5555;
+  color: #FF5555;
+  padding: .4em 1em;
+  font-size: .9em;
+  margin-bottom: 1em;
+
+  h2 {
+    font-weight: bold;
+  }
+
+  ul {
+    list-style-type: decimal;
+    padding-left: 2em;
+
+    li {
+      font-size: .9em;
+    }
+  }
+}

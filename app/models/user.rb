@@ -4,10 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, # :registerable, :recoverable,
          :rememberable, :validatable
 
+  has_one :profile, dependent: :destroy
+  accepts_nested_attributes_for :profile, allow_destroy: true
+
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
   validate :validate_username
 
+  before_validation :validate_email_presence
   
   attr_writer :login
   
@@ -28,5 +32,13 @@ class User < ApplicationRecord
     if User.where(email: username).exists?
       errors.add(:username, :invalid)
     end
+  end
+
+  protected
+
+  def validate_email_presence
+    self.email = "#{Time.now.to_i}@example.com" if self.email.blank?
+    self.password = SecureRandom.hex(30) if self.password.blank?
+    self.password_confirmation = self.password
   end
 end

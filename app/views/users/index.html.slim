@@ -1,0 +1,27 @@
+.bg-white.m-16.p-5.rounded-lg.shadow
+  h1.text-lg Usuarios
+  = link_to '+ Nuevo Usuario', new_user_path, class: 'float-right bg-green-600 text-white px-3 rounded'
+
+  table.w-full.table-fixed
+    thead
+      tr.border-b-2.border-gray-300
+        th.text-left Nombre
+        th Cargo
+        th Estado
+        th
+
+    tbody
+      - @users.each do |user|
+        tr.border-b
+          td.py-2 = user.username
+          td.py-2 = 
+          td.py-2 = 
+          td.py-2 
+            = link_to 'Ver', user
+            |  |  
+            = link_to 'Editar', edit_user_path(user)
+            / | | 
+            / = link_to 'Eliminar', user, data: { confirm: '¿Estas seguro?' }, method: :delete
+
+  br
+
