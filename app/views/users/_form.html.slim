@@ -5,22 +5,47 @@
       ul
         - @user.errors.full_messages.each do |message|
           li = message
-  .container
+  .container.flex.flex-wrap
     = f.fields_for :profile do |ff|
-      HOLA
-      = ff.text_field :name
-      = ff.text_field :first_surname
-      = ff.text_field :second_surname
-      = ff.text_field :postal_code
-      = ff.text_field :state
-      = ff.text_field :location
-      = ff.text_field :mobile_number
-      = ff.text_field :suburb
-      = ff.text_field :street
-      = ff.text_field :ext_num
-      = ff.text_field :int_num
-      = ff.text_field :phone_number
-      = ff.text_field :photo
+      div      
+        = ff.label :name
+        = ff.text_field :name, class: :block
+      div        
+        = ff.label :first_surname
+        = ff.text_field :first_surname, class: :block
+      div        
+        = ff.label :second_surname
+        = ff.text_field :second_surname, class: :block
+      div        
+        = ff.label :postal_code
+        = ff.text_field :postal_code, class: :block
+      div        
+        = ff.label :state
+        = ff.text_field :state, class: :block
+      div        
+        = ff.label :location
+        = ff.text_field :location, class: :block
+      div        
+        = ff.label :mobile_number
+        = ff.text_field :mobile_number, class: :block
+      div        
+        = ff.label :suburb
+        = ff.text_field :suburb, class: :block
+      div        
+        = ff.label :street
+        = ff.text_field :street, class: :block
+      div        
+        = ff.label :ext_num
+        = ff.text_field :ext_num, class: :block
+      div        
+        = ff.label :int_num
+        = ff.text_field :int_num, class: :block
+      div        
+        = ff.label :phone_number
+        = ff.text_field :phone_number, class: :block
+      div        
+        = ff.label :photo
+        = ff.text_field :photo, class: :block
   
   .conatiner
     = f.text_field :username
