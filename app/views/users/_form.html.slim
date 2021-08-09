@@ -1,56 +1,32 @@
-= form_with model: @user, autocomplete: :off, local: true do |f|
+= simple_form_for @user, autocomplete: :off, local: true, html: { class: 'default' } do |f|
   - if @user.errors.any?
     #error_explanation
       h2 = "#{pluralize(@user.errors.count, 'error')} prohibited this user from being saved:"
       ul
         - @user.errors.full_messages.each do |message|
           li = message
-  .container.flex.flex-wrap
+  .container.grid.grid-cols-3.gap-x-3
     = f.fields_for :profile do |ff|
-      div      
-        = ff.label :name
-        = ff.text_field :name, class: :block
-      div        
-        = ff.label :first_surname
-        = ff.text_field :first_surname, class: :block
-      div        
-        = ff.label :second_surname
-        = ff.text_field :second_surname, class: :block
-      div        
-        = ff.label :postal_code
-        = ff.text_field :postal_code, class: :block
-      div        
-        = ff.label :state
-        = ff.text_field :state, class: :block
-      div        
-        = ff.label :location
-        = ff.text_field :location, class: :block
-      div        
-        = ff.label :mobile_number
-        = ff.text_field :mobile_number, class: :block
-      div        
-        = ff.label :suburb
-        = ff.text_field :suburb, class: :block
-      div        
-        = ff.label :street
-        = ff.text_field :street, class: :block
-      div        
-        = ff.label :ext_num
-        = ff.text_field :ext_num, class: :block
-      div        
-        = ff.label :int_num
-        = ff.text_field :int_num, class: :block
-      div        
-        = ff.label :phone_number
-        = ff.text_field :phone_number, class: :block
-      div        
-        = ff.label :photo
-        = ff.text_field :photo, class: :block
+      = ff.input :name, class: :block
+      = ff.input :first_surname, class: :block
+      = ff.input :second_surname, class: :block
+      = ff.input :postal_code, class: :block
+      = ff.input :state, class: :block
+      = ff.input :location, class: :block
+      = ff.input :mobile_number, class: :block
+      = ff.input :suburb, class: :block
+      = ff.input :street, class: :block
+      = ff.input :ext_num, class: :block
+      = ff.input :int_num, class: :block
+      = ff.input :phone_number, class: :block
+      = ff.input :photo, class: :block
   
-  .conatiner
-    = f.text_field :username
-    = f.password_field :password, autocomplete: :off
-    = f.password_field :password_confirmation, autocomplete: :off
+  hr/
+  h2.text-lg Usuario del Sistema
+  .container.flex.flex-col
+    = f.input :username
+    = f.input :password, autocomplete: :off
+    = f.input :password_confirmation, autocomplete: :off
 
   .actions 
     = f.submit class: "float-right bg-blue-600 text-white rounded px-3 py-0.5"

@@ -1,19 +1,24 @@
 .bg-white.m-16.p-5.rounded-lg.shadow
-  h1.text-lg Datos del usuario
-  p#notice = notice
+  h1.text-xl.mb-5.font-bold Datos del usuario
   
-  .containet
-    div = @user.username
-    div = @user.email
-    div = @user.profile&.name
-    div = @user.profile&.first_surname
-    div = @user.profile&.second_surname
-    div = @user.profile&.postal_code
-    div = @user.profile&.state
-    div = @user.profile&.location
+  .container
+    div
+      h2.text-lg.font-bold System User
+      div = @user.username
+      div = @user.email
+    div
+      h2.text-lg.font-bold Full name
+      = "#{@user.profile&.name} #{@user.profile&.first_surname} #{@user.profile&.second_surname}"
+    div
+      h2.text-lg.font-bold Address
+      div = @user.profile&.postal_code
+      div = @user.profile&.state
+      div = @user.profile&.location
+      div = @user.profile&.suburb
+      div = @user.profile&.street
+    div
+      h2.text-lg.font-bold Other Info
     div = @user.profile&.mobile_number
-    div = @user.profile&.suburb
-    div = @user.profile&.street
     div = @user.profile&.ext_num
     div = @user.profile&.int_num
     div = @user.profile&.phone_number
