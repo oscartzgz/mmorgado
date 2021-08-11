@@ -1,0 +1,18 @@
+= simple_form_for(@provider) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :full_name
+    = f.input :phone_number
+    = f.input :address
+    = f.input :city
+    = f.input :country
+    = f.input :postal_code
+    = f.input :contact_full_name
+    = f.input :contact_email
+    = f.input :contact_phone_number
+    = f.input :contact_mobile_number
+
+  .form-actions
+    = f.button :submit
