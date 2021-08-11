@@ -1,0 +1,30 @@
+= simple_form_for @client, html: { class: 'default' } do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs.grid.grid-cols-3.gap-x-3
+    = f.input :name
+    = f.input :first_surname
+    = f.input :second_surname
+    = f.input :address
+    = f.input :location
+    = f.input :state
+    = f.input :country, as: :string
+    = f.input :postal_code
+    = f.input :email
+    = f.input :mobile_number
+    = f.input :phone_number
+  br
+  h2.text.lg.font-bold Referencia Aval
+  .container.grid.grid-cols-3.gap-x-3
+    = f.input :endorsement_full_name
+    = f.input :endorsement_mobile_phone
+    = f.input :endorsement_phone_number
+    = f.input :endorsement_address
+    = f.input :endorsement_location
+    = f.input :endorsement_country, as: :string
+    = f.input :endorsement_postal_code
+    = f.input :endorsement_relationship
+
+  .form-actions
+    = f.button :submit

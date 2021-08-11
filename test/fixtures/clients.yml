@@ -1,0 +1,43 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  first_surname: MyString
+  second_surname: MyString
+  address: MyString
+  location: MyString
+  state: MyString
+  country: MyString
+  postal_code: MyString
+  email: MyString
+  mobile_number: MyString
+  phone_number: MyString
+  endorsement_full_name: MyString
+  endorsement_mobile_phone: MyString
+  endorsement_phone_number: MyString
+  endorsement_address: MyString
+  endorsement_location: MyString
+  endorsement_country: MyString
+  endorsement_postal_code: MyString
+  endorsement_relationship: MyString
+
+two:
+  name: MyString
+  first_surname: MyString
+  second_surname: MyString
+  address: MyString
+  location: MyString
+  state: MyString
+  country: MyString
+  postal_code: MyString
+  email: MyString
+  mobile_number: MyString
+  phone_number: MyString
+  endorsement_full_name: MyString
+  endorsement_mobile_phone: MyString
+  endorsement_phone_number: MyString
+  endorsement_address: MyString
+  endorsement_location: MyString
+  endorsement_country: MyString
+  endorsement_postal_code: MyString
+  endorsement_relationship: MyString
