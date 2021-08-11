@@ -1,45 +1,44 @@
-p#notice = notice
+.bg-white.m-16.p-5.rounded-lg.shadow
+  p
+    strong Full name:
+    = @provider.full_name
 
-p
-  strong Full name:
-  = @provider.full_name
+  p
+    strong Phone number:
+    = @provider.phone_number
 
-p
-  strong Phone number:
-  = @provider.phone_number
+  p
+    strong Address:
+    = @provider.address
 
-p
-  strong Address:
-  = @provider.address
+  p
+    strong City:
+    = @provider.city
 
-p
-  strong City:
-  = @provider.city
+  p
+    strong Country:
+    = @provider.country
 
-p
-  strong Country:
-  = @provider.country
+  p
+    strong Postal code:
+    = @provider.postal_code
 
-p
-  strong Postal code:
-  = @provider.postal_code
+  p
+    strong Contact full name:
+    = @provider.contact_full_name
 
-p
-  strong Contact full name:
-  = @provider.contact_full_name
+  p
+    strong Contact email:
+    = @provider.contact_email
 
-p
-  strong Contact email:
-  = @provider.contact_email
+  p
+    strong Contact phone number:
+    = @provider.contact_phone_number
 
-p
-  strong Contact phone number:
-  = @provider.contact_phone_number
+  p
+    strong Contact mobile number:
+    = @provider.contact_mobile_number
 
-p
-  strong Contact mobile number:
-  = @provider.contact_mobile_number
-
-=> link_to 'Edit', edit_provider_path(@provider)
-'|
-=< link_to 'Back', providers_path
+  => link_to 'Edit', edit_provider_path(@provider)
+  '|
+  =< link_to 'Back', providers_path

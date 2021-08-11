@@ -1,14 +1,17 @@
-= simple_form_for(@provider) do |f|
+= simple_form_for @provider, html: { class: 'default' } do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .form-inputs
+  .form-inputs.grid.grid-cols-3.gap-x-3
     = f.input :full_name
     = f.input :phone_number
     = f.input :address
     = f.input :city
-    = f.input :country
+    = f.input :country, as: :string
     = f.input :postal_code
+  br
+  h2.text-lg.font-bold.mb-3 Contacto
+  .container.grid.grid-cols-3.gap-x-3
     = f.input :contact_full_name
     = f.input :contact_email
     = f.input :contact_phone_number

@@ -1,39 +1,28 @@
-h1 Listing providers
+.bg-white.m-16.p-5.rounded-lg.shadow
+  h1.text-xl.mb-5.font-bold Listing providers
+  = link_to '+ Nuevo proveedor', new_provider_path, class: 'float-right bg-green-600 text-white px-3 rounded'
 
-table
-  thead
-    tr
-      th Full name
-      th Phone number
-      th Address
-      th City
-      th Country
-      th Postal code
-      th Contact full name
-      th Contact email
-      th Contact phone number
-      th Contact mobile number
-      th
-      th
-      th
-
-  tbody
-    - @providers.each do |provider|
+  table.w-full.table-fixed
+    thead
       tr
-        td = provider.full_name
-        td = provider.phone_number
-        td = provider.address
-        td = provider.city
-        td = provider.country
-        td = provider.postal_code
-        td = provider.contact_full_name
-        td = provider.contact_email
-        td = provider.contact_phone_number
-        td = provider.contact_mobile_number
-        td = link_to 'Show', provider
-        td = link_to 'Edit', edit_provider_path(provider)
-        td = link_to 'Destroy', provider, data: { confirm: 'Are you sure?' }, method: :delete
+        th Proveedor
+        th Telefono
+        th Dirección
+        th Contacto
+        th
 
-br
+    tbody
+      - @providers.each do |provider|
+        tr
+          td = provider.full_name
+          td = provider.phone_number
+          td = provider.address
+          td = provider.contact_full_name
+          td
+            = link_to 'Show', provider
+            =<> "|"
+            = link_to 'Edit', edit_provider_path(provider)
+            =<> "|"
+            = link_to 'Destroy', provider, data: { confirm: 'Are you sure?' }, method: :delete
 
-= link_to 'New Provider', new_provider_path
+  br
