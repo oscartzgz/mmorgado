@@ -1,50 +1,26 @@
 .bg-white.m-16.p-5.rounded-lg.shadow
-  h1.text-xl.mb-5.font-bold Listing clients
+  h1.text-xl.mb-5.font-bold Lista de Clientes
 
-  = link_to 'New Client', new_client_path, class: 'float-right bg-green-600 text-white px-3 rounded'
+  = link_to '+ Nuevo cliente', new_client_path, class: 'float-right bg-green-600 text-white px-3 rounded'
   .container.w-full.overflow-x-auto
     table.w-full.table-fixed
       thead
         tr
-          th Name
-          th Address
-          th Location
-          th State
-          / th Country
-          / th Postal code
-          th Email
-          th Mobile number
-          / th Phone number
-          / th Endorsement full name
-          / th Endorsement mobile phone
-          / th Endorsement phone number
-          / th Endorsement address
-          / th Endorsement location
-          / th Endorsement country
-          / th Endorsement postal code
-          / th Endorsement relationship
+          th Cliente
+          th Telefono
+          th Dirección
+          th Saldo favor
+          th Contacto
           th
 
       tbody
         - @clients.each do |client|
           tr
             td = client.full_name
-            td = client.address
-            td = client.location
-            td = client.state
-            / td = client.country
-            / td = client.postal_code
-            td = client.email
             td = client.mobile_number
-            / td = client.phone_number
-            / td = client.endorsement_full_name
-            / td = client.endorsement_mobile_phone
-            / td = client.endorsement_phone_number
-            / td = client.endorsement_address
-            / td = client.endorsement_location
-            / td = client.endorsement_country
-            / td = client.endorsement_postal_code
-            / td = client.endorsement_relationship
+            td = client.full_address
+            td
+            td = client.endorsement_full_name
             td
               div
                 = link_to 'Show', client
