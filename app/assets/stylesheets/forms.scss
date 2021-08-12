@@ -4,12 +4,37 @@ form.default {
     width: 100%;
     border: 1px solid gray;
     border-radius: 4px;
-    margin-bottom: .5rem;
   }
 
   input[type=checkbox] {
     width: 1.5rem;
     height: 1.5rem;
-    margin-right: .5rem;
+  }
+
+  .input {
+    margin-bottom: .5rem;
+  }
+
+  .error_notification {
+    color: white;
+    background-color: #F95B5B;
+    border-radius: .3rem;
+    padding: .1rem .5rem;
+    margin: 1rem 0;
+  }
+
+  .field_with_errors {
+    input {
+      margin-bottom: 0;
+      border-color: #fd041b;
+    }
+
+    .error {
+      font-size: .8rem;
+      color: #fd041b;
+      background-color: #ffe5e8;
+      border-radius: .2rem;
+      padding: .05rem .3rem;
+    }
   }
 }
