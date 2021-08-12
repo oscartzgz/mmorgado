@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'inventory/index'
   resources :product_brands
   resources :product_categories
   resources :providers

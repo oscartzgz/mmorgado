@@ -1,0 +1,25 @@
+.bg-white.m-16.p-5.rounded-lg.shadow
+  h1.text-xl.mb-5.font-bold Lista de Categorías
+  = link_to '+ Nueva categoría', new_product_category_path, class: 'float-right bg-green-600 text-white px-3 rounded'
+
+  table.w-full.table-fixed
+    thead
+      tr
+        th Name
+        th Active
+        th
+
+    tbody
+      - @product_categories.each do |product_category|
+        tr
+          td = product_category.name
+          td = product_category.active ? "Activo" : "Inactivo"
+          td
+            = link_to 'Show', product_category
+            =<> "|"
+            = link_to 'Edit', edit_product_category_path(product_category)
+            =<> "|"
+            = link_to 'Destroy', product_category, data: { confirm: 'Are you sure?' }, method: :delete
+
+  br
+

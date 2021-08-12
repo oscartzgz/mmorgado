@@ -1,0 +1,12 @@
+.bg-white.m-16.p-5.rounded-lg.shadow
+  p
+    strong Name:
+    = @product_brand.name
+
+  p
+    strong Active:
+    = @product_brand.active
+
+  => link_to 'Edit', edit_product_brand_path(@product_brand)
+  '|
+  =< link_to 'Back', product_brands_path

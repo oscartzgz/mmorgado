@@ -1,0 +1,23 @@
+.bg-white.m-16.p-5.rounded-lg.shadow
+  h1.text-xl.mb-5.font-bold Listing product_brands
+  = link_to '+ Nueva Marca', new_product_brand_path, class: 'float-right bg-green-600 text-white px-3 rounded'
+
+  table.w-full.table-fixed
+    thead
+      tr
+        th Name
+        th Active
+        th
+
+    tbody
+      - @product_brands.each do |product_brand|
+        tr
+          td = product_brand.name
+          td.text-center = product_brand.active ? "Activo" : "Inactivo"
+          td
+            = link_to 'Show', product_brand
+            =<> "|"
+            = link_to 'Edit', edit_product_brand_path(product_brand)
+            =<> "|"
+            = link_to 'Destroy', product_brand, data: { confirm: 'Are you sure?' }, method: :delete
+  br

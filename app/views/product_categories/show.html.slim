@@ -1,0 +1,12 @@
+.bg-white.m-16.p-5.rounded-lg.shadow
+  p
+    strong Name:
+    = @product_category.name
+
+  p
+    strong Active:
+    = @product_category.active
+
+  => link_to 'Edit', edit_product_category_path(@product_category)
+  '|
+  =< link_to 'Back', product_categories_path
