@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :products
   resources :inventory, only: :index
   resources :product_brands
   resources :product_categories
