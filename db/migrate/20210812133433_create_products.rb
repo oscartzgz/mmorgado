@@ -5,7 +5,7 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.string :name, null: false
       t.string :model
       t.text :description
-      t.decimal :list_price, presicion: 8, scale: 2
+      t.decimal :list_price, presicion: 8, scale: 2, null: false
       t.integer :stock, null: false, default: 0
       t.integer :min_stock, null: false, defult: 1
       t.decimal :credit_price, presicion: 10, scale: 2

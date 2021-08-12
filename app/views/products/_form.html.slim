@@ -1,8 +1,8 @@
-= simple_form_for(@product) do |f|
+= simple_form_for @product, html: { class: 'default' } do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .form-inputs
+  .form-inputs.grid.grid-cols-2.gap-x-5
     = f.input :code
     = f.input :name
     = f.input :model
@@ -12,7 +12,7 @@
     = f.input :min_stock
     = f.input :credit_price
     = f.input :cost_price
-    = f.association :provider
+    = f.association :provider, label_method: :full_name
     = f.association :product_brand
     = f.association :product_category
 

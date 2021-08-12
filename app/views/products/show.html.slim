@@ -1,53 +1,54 @@
-p#notice = notice
+.bg-white.m-16.p-5.rounded-lg.shadow
+  p#notice = notice
 
-p
-  strong Code:
-  = @product.code
+  p
+    strong Code:
+    = @product.code
 
-p
-  strong Name:
-  = @product.name
+  p
+    strong Name:
+    = @product.name
 
-p
-  strong Model:
-  = @product.model
+  p
+    strong Model:
+    = @product.model
 
-p
-  strong Description:
-  = @product.description
+  p
+    strong Description:
+    = @product.description
 
-p
-  strong List price:
-  = @product.list_price
+  p
+    strong List price:
+    = @product.list_price
 
-p
-  strong Stock:
-  = @product.stock
+  p
+    strong Stock:
+    = @product.stock
 
-p
-  strong Min stock:
-  = @product.min_stock
+  p
+    strong Min stock:
+    = @product.min_stock
 
-p
-  strong Credit price:
-  = @product.credit_price
+  p
+    strong Credit price:
+    = @product.credit_price
 
-p
-  strong Cost price:
-  = @product.cost_price
+  p
+    strong Cost price:
+    = @product.cost_price
 
-p
-  strong Provider:
-  = @product.provider
+  p
+    strong Provider:
+    = @product.provider
 
-p
-  strong Product brand:
-  = @product.product_brand
+  p
+    strong Product brand:
+    = @product.product_brand
 
-p
-  strong Product category:
-  = @product.product_category
+  p
+    strong Product category:
+    = @product.product_category
 
-=> link_to 'Edit', edit_product_path(@product)
-'|
-=< link_to 'Back', products_path
+  => link_to 'Edit', edit_product_path(@product)
+  '|
+  =< link_to 'Back', inventory_index_path

@@ -1,6 +1,14 @@
 form.default {
-  input {
+
+  input,
+  select {
     height: 2.5rem;
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 4px;
+  }
+
+  textarea {
     width: 100%;
     border: 1px solid gray;
     border-radius: 4px;

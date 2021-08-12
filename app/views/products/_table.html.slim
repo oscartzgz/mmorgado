@@ -1,43 +1,37 @@
 h1 Listing products
 
-table
+= link_to '+ New Product', new_product_path, class: 'float-right bg-green-600 text-white px-3 rounded visited:text-white'
+
+table.w-full.table-fixed
   thead
     tr
       th Code
-      th Name
-      th Model
+      th Articulo
+      th Brand
       th Description
       th List price
-      th Stock
-      th Min stock
-      th Credit price
       th Cost price
+      th Stock
       th Provider
-      th Product brand
-      th Product category
-      th
-      th
       th
 
   tbody
-    - @products.each do |product|
+    - products.each do |product|
       tr
         td = product.code
         td = product.name
-        td = product.model
+        td = product.product_brand&.name
         td = product.description
         td = product.list_price
-        td = product.stock
-        td = product.min_stock
-        td = product.credit_price
         td = product.cost_price
-        td = product.provider
-        td = product.product_brand
-        td = product.product_category
-        td = link_to 'Show', product
-        td = link_to 'Edit', edit_product_path(product)
-        td = link_to 'Destroy', product, data: { confirm: 'Are you sure?' }, method: :delete
+        td = product.stock
+        td = product.provider&.full_name
+        td
+          = link_to 'Show', product
+          =<> "|"
+          = link_to 'Edit', edit_product_path(product)
+          =<> "|"
+          = link_to 'Destroy', product, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 
-= link_to 'New Product', new_product_path

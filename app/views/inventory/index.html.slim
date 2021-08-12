@@ -3,5 +3,4 @@
     = link_to 'Categorías', product_categories_path, class: 'text-white border-2 rounded px-5 border-white hover:bg-white hover:text-gray-900 visited:text-white'
     = link_to 'Marcas', product_categories_path, class: 'text-white border-2 rounded px-5 border-white hover:bg-white hover:text-gray-900 visited:text-white'
 .bg-white.mx-16.my-10.p-5.rounded-lg.shadow
-  h1 Inventory#index
-  p Find me in app/views/inventory/index.html.slim
+  = render partial: 'products/table', locals: {products: @products}
