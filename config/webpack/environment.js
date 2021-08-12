@@ -1,4 +1,5 @@
 const { environment } = require('@rails/webpacker')
+const erb = require('./loaders/erb')
 
 // Get the actual sass-loader config
 const sassLoader = environment.loaders.get('sass')
@@ -23,4 +24,5 @@ environment.loaders.keys().forEach(loaderName => {
   loader.use.forEach(hotfixPostcssLoaderConfig)
 })
 
+environment.loaders.prepend('erb', erb)
 module.exports = environment
