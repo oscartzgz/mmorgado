@@ -1,0 +1,52 @@
+.container.m-16
+  input.client-search.h-12.w-full.px-5.py-0.5.text-lg.rounded-full type="text" placeholder="Buscar Cliente" /
+  
+  .bg-white.my-10.p-0.rounded-lg.shadow.overflow-hidden
+    table.w-full.table-fixed
+      thead.bg-gray-200.text-gray-500
+       th.py-1 Cliente
+       th Dirección
+       th Fecha
+       th Tipo
+       th Apartado
+       th Eliminar
+       th Saldo Favor
+      tbody
+        tr
+          td.text-center.py-1 -----
+          td.text-center NA
+          td.text-center 20/03/2022
+          td.text-center PP
+          td.text-center
+            input type="checkbox"
+          td.text-center
+            span.bg-red-500.text-white.px-3.py-0.5.rounded-lg X
+          td.text-center $0.00
+
+  select.client-search.h-12.w-full.px-5.py-0.5.text-lg.rounded-full
+    option value="" Agregar Artículo 
+
+  .bg-white.my-10.rounded-lg.shadow.overflow-hidden
+    table.w-full.table-fixed
+      thead.bg-gray-200.text-gray-500
+       th.py-1 Código
+       th Producto
+       th Cantidad
+       th Precio de Venta
+       th Importe
+       th Eliminar
+      tbody
+        tr
+          td.h-16.p-16
+          td
+          td
+          td
+          td
+          td
+
+  .flex.align-items-end.justify-end
+    button.bg-blue-500.px-3.text-white Agregar Flete
+    input type="text"
+    button.bg-blue-500.px-3.text-white DESC
+  .flex.align-items-end.justify-end.mt-5
+    button.bg-blue-400.px-3.text-2xl.text-white.rounded.px-16.py-2 Realizar Venta

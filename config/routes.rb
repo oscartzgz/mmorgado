@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :products
+  resources :sale_point, only: :index
   resources :inventory, only: :index
+  resources :products
   resources :product_brands
   resources :product_categories
   resources :providers

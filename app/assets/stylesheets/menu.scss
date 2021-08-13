@@ -3,6 +3,17 @@ nav {
     color: white;
   }
 
+  a:hover {
+    background-color: #f1dc03;
+    color: #555;
+  }
+
+  a.active {
+    background-color: #f1dc03;
+    color: #555;
+    font-weight: bold;
+  }
+
   .main-menu img {
     filter: drop-shadow(2px 4px 1px #BBB);
   }
