@@ -23,5 +23,4 @@ environment.loaders.keys().forEach(loaderName => {
   loader.use.forEach(hotfixPostcssLoaderConfig)
 })
 
-environment.loaders.prepend('erb', erb)
 module.exports = environment
