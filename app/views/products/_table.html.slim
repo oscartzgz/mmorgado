@@ -3,8 +3,8 @@ h1.text-xl.font-bold Lista de Productos
 = link_to '+ New Product', new_product_path, class: 'float-right bg-green-600 text-white px-3 rounded visited:text-white'
 
 table.w-full.table-fixed
-  thead
-    tr
+  thead.bg-gray-200
+    tr.text-gray-500
       th Code
       th Articulo
       th Brand
@@ -17,7 +17,7 @@ table.w-full.table-fixed
 
   tbody
     - products.each do |product|
-      tr
+      tr.even:bg-gray-100.hover:bg-gray-600.hover:text-white
         td = product.code
         td = product.name
         td = product.product_brand&.name

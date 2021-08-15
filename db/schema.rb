@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 2021_08_12_133433) do
   end
 
   create_table "product_categories", force: :cascade do |t|
-    t.string "name", null: false
-    t.boolean "active", default: true
+    t.string "name"
+    t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

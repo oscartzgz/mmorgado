@@ -10,3 +10,8 @@
 
 .bg-white.mx-16.mb-10.p-5.rounded-lg.shadow
   = render partial: 'products/table', locals: {products: @products}
+
+.bg-white.mx-16.mb-10.rounded-lg.shadow.overflow-hidden
+  .head.bg-red-600.py-2
+    h2#minimum_existences.text-center.text-white.text-xl Existencias mínimas
+  = render partial: 'products/table_min_stock', locals: {products: Product.out_of_minimum_stock}

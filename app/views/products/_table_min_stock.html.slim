@@ -1,0 +1,24 @@
+table.w-full.table-fixed
+  thead.bg-gray-200
+    tr.text-gray-500
+      th Código
+      th Articulo
+      th.text-center Marca
+      th Modelo
+      th.text-center Categoría
+      th width="120" Stock
+
+  tbody
+    - products.each do |product|
+      tr.even:bg-gray-100
+        td.py-2.px-4 = product.code
+        td = product.name
+        td.text-center = product.product_brand&.name
+        td = product.model
+        td.text-center = product.product_category&.name
+        td.text-center.px-3 
+          = product.stock
+          small.text-gray-400
+            =< "(min #{product.min_stock})"
+br
+

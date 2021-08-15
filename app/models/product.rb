@@ -9,4 +9,12 @@ class Product < ApplicationRecord
   validates :min_stock, presence: true
   validates :list_price, presence: true
   
+  def self.out_of_minimum_stock
+    self.all.select(&:is_minimum_stock?)
+  end
+
+  def is_minimum_stock?
+    self.stock <= self.min_stock
+  end
+
 end
