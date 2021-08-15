@@ -2,5 +2,11 @@
   .flex.justify-end.gap-5
     = link_to 'Categorías', product_categories_path, class: 'text-white border-2 rounded px-5 border-white hover:bg-white hover:text-gray-900 visited:text-white'
     = link_to 'Marcas', product_categories_path, class: 'text-white border-2 rounded px-5 border-white hover:bg-white hover:text-gray-900 visited:text-white'
-.bg-white.mx-16.my-10.p-5.rounded-lg.shadow
+
+.container.mt-16.mx-16.mb-3
+  = search_form_for @q, url: inventory_index_path do |f|
+    = f.search_field :code_or_name_cont, placeholder: 'Buscar Producto' ,class: 'rounded-l-lg'
+    = f.submit 'Buscar', class: 'bg-blue-400 text-white px-3 py-2 rounded-r-lg'
+
+.bg-white.mx-16.mb-10.p-5.rounded-lg.shadow
   = render partial: 'products/table', locals: {products: @products}

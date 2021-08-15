@@ -1,4 +1,9 @@
-.bg-white.m-16.p-5.rounded-lg.shadow
+.container.mt-16.mx-16.mb-3
+  = search_form_for @q do |f|
+    = f.search_field :name_or_first_surname_or_second_surname_cont, placeholder: 'Buscar Cliente' ,class: 'rounded-l-lg'
+    = f.submit 'Buscar', class: 'bg-blue-400 text-white px-3 py-2 rounded-r-lg'
+
+.bg-white.mx-16.p-5.rounded-lg.shadow
   h1.text-xl.mb-5.font-bold Lista de Clientes
 
   = link_to '+ Nuevo cliente', new_client_path, class: 'float-right bg-green-600 text-white px-3 rounded'
