@@ -47,22 +47,22 @@ ActiveRecord::Schema.define(version: 2021_08_12_133433) do
   end
 
   create_table "product_categories", force: :cascade do |t|
-    t.string "name"
-    t.boolean "active"
+    t.string "name", null: false
+    t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "code"
-    t.string "name"
+    t.string "code", null: false
+    t.string "name", null: false
     t.string "model"
     t.text "description"
-    t.string "list_price"
-    t.string "stock"
-    t.integer "min_stock"
-    t.string "credit_price"
-    t.string "cost_price"
+    t.decimal "list_price", precision: 8, scale: 2, default: "0.0", null: false
+    t.integer "stock", default: 0, null: false
+    t.integer "min_stock", null: false
+    t.decimal "credit_price", precision: 10, scale: 2, default: "0.0"
+    t.decimal "cost_price", precision: 10, scale: 2, default: "0.0"
     t.bigint "provider_id", null: false
     t.bigint "product_brand_id", null: false
     t.bigint "product_category_id", null: false
