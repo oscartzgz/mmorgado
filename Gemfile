@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'slim-rails'
 gem 'devise'
 gem 'simple_form'
+gem 'ransack'
 
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'
