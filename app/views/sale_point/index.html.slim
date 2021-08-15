@@ -1,6 +1,8 @@
 .container.m-16
-  input.client-search.h-12.w-full.px-5.py-0.5.text-lg.rounded-full type="text" placeholder="Buscar Cliente" /
-  
+  .flex.gap-5
+    input.client-search.h-12.w-full.px-5.py-0.5.text-lg.rounded-full type="text" placeholder="Buscar Cliente" /
+    = link_to 'Nuevo Cliente', new_client_path, class: 'flex items-center font-bold inline-block text-center bg-green-500 text-white rounded-lg px-5 whitespace-nowrap'
+
   .bg-white.my-10.p-0.rounded-lg.shadow.overflow-hidden
     table.w-full.table-fixed
       thead.bg-gray-200.text-gray-500
