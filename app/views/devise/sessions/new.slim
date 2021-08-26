@@ -1,8 +1,8 @@
 .absolute.bottom-0.top-0.left-0.right-0.flex.items-center.justify-items-center.justify-center.padding
   .form-login-container.p-7.rounded-lg.text-white.shadow-2xl class="mx-5 sm:w-1/2 md:w-2/5 lg:w-1/5 " 
-    img.px-10 src=("#{image_path 'LogoMM.png'}") /
+    img.px-2 src=("#{image_path 'LogoMM.png'}") /
     h2.text-center.font-bold.my-3 SYSTEM
-    p.text-xs Bienvenido! Ingresa Email y Contraseña para continuar
+    p.text-xs.text-center ¡Bienvenido! Ingresa Usuario y Contraseña para continuar
     = form_for(resource, as: resource_name, url: session_path(resource_name), class: '') do |f|
       .field
         br/
