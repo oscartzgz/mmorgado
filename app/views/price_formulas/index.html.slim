@@ -1,0 +1,41 @@
+.my-10.mx-16
+  - if @provider
+    = link_to '+ New Price formula', new_price_formula_path(provider_id: @provider.id, model_type: 'ProductBrand'), class: 'bg-yellow-400 text-gray-700 px-5 py-0.5 rounded border-yellow-500 border-2 float-right'
+
+  = search_form_for @q do |f|
+    .flex
+      = f.collection_select :provider_id_eq, Provider.all, 'id', 'full_name', include_blank: true, placeholder: 'Selecciona un Proveedor'
+      = f.submit 'Search'
+
+  
+  .bg-white.py-10.px-5.mb-10.rounded-lg.shadow.overflow-hidden
+
+    h1.mb-8.text-lg.font-bold Listing price_formulas
+
+    table.w-full
+      thead.bg-gray-200
+        tr.text-gray-500
+          th Brand
+          th.text-center Activa
+          th.text-center Formula Precio Costo
+          th Formula General
+          th
+
+      tbody
+        - @price_formulas_by_brand&.each do |price_formula|
+          tr
+            td = price_formula.priceable.name
+            td.text-center = price_formula.enable ? 'Si' : 'No'
+            td.text-center
+              = price_formula.formula
+              small.ml-3 = "(#{price_formula.final_value})"
+            td =
+            td
+              = link_to 'Show', price_formula
+              =<> '|'
+              = link_to 'Edit', edit_price_formula_path(price_formula)
+              =<> '|'
+              = link_to 'Destroy', price_formula, data: { confirm: 'Are you sure?' }, method: :delete
+
+    br
+

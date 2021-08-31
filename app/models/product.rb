@@ -2,6 +2,7 @@ class Product < ApplicationRecord
   belongs_to :provider
   belongs_to :product_brand
   belongs_to :product_category
+  has_many :price_formulas
 
   validates :code, presence: true
   validates :name, presence: true
@@ -16,5 +17,4 @@ class Product < ApplicationRecord
   def is_minimum_stock?
     self.stock <= self.min_stock
   end
-
 end

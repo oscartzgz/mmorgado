@@ -1,0 +1,16 @@
+.bg-white.m-16.p-5.rounded-lg.shadow
+  p
+    strong Enable:
+    = @price_formula.enable
+
+  p
+    strong Formula:
+    = @price_formula.formula
+
+  p
+    strong Priceable:
+    = @price_formula.priceable
+
+  => link_to 'Edit', edit_price_formula_path(@price_formula)
+  '|
+  =< link_to 'Back', price_formulas_path

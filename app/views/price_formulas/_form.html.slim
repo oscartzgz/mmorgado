@@ -1,0 +1,13 @@
+= simple_form_for @price_formula, html: { class: 'default' } do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :enable, label: 'Formula habilitada?'
+    = f.input :provider_id, as: :hidden
+    = f.input :formula, as: :string
+    = f.input :priceable_type, as: :hidden
+    = f.input :priceable_id, label: 'Marca', collection: @provider_brands&.collect{ |pb| [pb.name, pb.id] } || nil, include_blank: 'Select brand...', label: 'Brand'
+
+  .form-actions
+    = f.button :submit
