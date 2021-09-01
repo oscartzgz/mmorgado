@@ -7,7 +7,7 @@
     = f.input :provider_id, as: :hidden
     = f.input :formula, as: :string
     = f.input :priceable_type, as: :hidden
-    = f.input :priceable_id, label: 'Marca', collection: @provider_brands&.collect{ |pb| [pb.name, pb.id] } || nil, include_blank: 'Select brand...', label: 'Brand'
+    = f.input :priceable_id, label: 'Marca', collection: ProductBrand.all.collect{ |pb| [pb.name, pb.id] } || nil, include_blank: 'Select brand...', label: 'Brand'
 
   .form-actions
     = f.button :submit
