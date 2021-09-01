@@ -15,11 +15,14 @@
  */
 
 body {
+  height: 100vh;
   background-image: asset-url('SystemBG.png');
+  background-repeat: no-repeat;
   background-size: cover;
 }
 
 main {
+  overflow: hidden;
   position: absolute;
   top: 0;
   right: 0;

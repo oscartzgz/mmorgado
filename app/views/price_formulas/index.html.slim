@@ -11,31 +11,40 @@
   
 .bg-white.py-10.px-5.mx-16.mb-10.rounded-lg.shadow.overflow-hidden
 
-  h1.mb-8.text-lg.font-bold Listing price_formulas
+  h1.mb-8.text-lg.font-bold
+    | Formulas de precios para
+    i =< @provider ? @provider.full_name : '"Selecciona un proveedor"'
 
   - if @provider 
     table.w-full
       thead.bg-gray-200
         tr.text-gray-500
-          th Brand
+          th Marcas / Producto
           th.text-center Formula Precio Costo
           th Formula General
       tbody
         - ProductBrand.all.each do |brand|
           - price_formula = brand.price_formulas.where(provider_id: @provider.id, name: "price_cost").take
           - general_formula = brand.price_formulas.where(provider_id: @provider.id, name: "general").take
-          tr
-            td = brand.name
+          tr.even:bg-gray-100
+            td.pl-3.text-center.font-bold = brand.name
             td.text-center
-              small.mr-3 = "(#{price_formula.enable ? 'On' : 'Off'})"
               = price_formula.formula
               small.ml-3 = "(#{price_formula.final_value})"
               = link_to 'edit', edit_price_formula_path(price_formula), class: 'ml-3 underline'
+              - if price_formula.enable
+                small.block.mr-3.text-blue-500 Habilitado
+              - else
+                small.block.mr-3.text-gray-500 Deshabilitado
+
             td.text-center
-              small.mr-3 = "(#{general_formula.enable ? 'On' : 'Off'})"
               = general_formula.formula
               small.ml-3 = "(#{general_formula.final_value})"
               = link_to 'edit', edit_price_formula_path(general_formula), class: 'ml-3 underline'
+              - if general_formula.enable
+                small.block.mr-3.text-blue-500 Habilitado
+              - else
+                small.block.mr-3.text-gray-500 Deshabilitado
 
   br
 
