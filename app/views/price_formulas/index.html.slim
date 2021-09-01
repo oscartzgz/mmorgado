@@ -5,8 +5,8 @@
 .container.mt-16.mx-16.mb-3
   = search_form_for @q do |f|
     .flex
-      = f.select :provider_id_eq, options_from_collection_for_select(Provider.all, 'id', 'full_name', @q.provider_id_eq), {}, class: 'rounded-l-lg', include_blank: true, placeholder: 'Selecciona un Proveedor'
-      = f.submit 'Search', class: 'bg-blue-400 text-white px-3 py-2 rounded-r-lg'
+      = f.select :provider_id_eq, options_from_collection_for_select(Provider.all, 'id', 'full_name', @q.provider_id_eq), {include_blank: '-Selecciona un Proveedor-'}, class: 'rounded-l-lg'
+      = f.submit 'Buscar', class: 'bg-blue-400 text-white px-3 py-2 rounded-r-lg'
 
   
 .bg-white.py-10.px-5.mx-16.mb-10.rounded-lg.shadow.overflow-hidden
