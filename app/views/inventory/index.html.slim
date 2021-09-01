@@ -2,7 +2,7 @@
   .flex.justify-end.gap-5
     = link_to 'Precios', price_formulas_path, class: 'text-white border-2 rounded px-5 border-white hover:bg-white hover:text-gray-900 visited:text-white'
     = link_to 'Categorías', product_categories_path, class: 'text-white border-2 rounded px-5 border-white hover:bg-white hover:text-gray-900 visited:text-white'
-    = link_to 'Marcas', product_categories_path, class: 'text-white border-2 rounded px-5 border-white hover:bg-white hover:text-gray-900 visited:text-white'
+    = link_to 'Marcas', product_brands_path, class: 'text-white border-2 rounded px-5 border-white hover:bg-white hover:text-gray-900 visited:text-white'
 
 .container.mt-16.mx-16.mb-3
   = search_form_for @q, url: inventory_index_path do |f|

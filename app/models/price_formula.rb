@@ -5,7 +5,7 @@ class PriceFormula < ApplicationRecord
   validates :formula, format: { 
                         with: /\A\d+[+-]\d+[+-]\d+\z/,
                         message: 'La formula no tiene la estructura correcta' }
-
+  validates :name, uniqueness: { scope: [:priceable_type, :priceable_id, :provider_id] }
 
   def final_value
     values = formula.split(/[+-]/).map(&:to_i)
