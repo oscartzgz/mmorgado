@@ -15,7 +15,7 @@
     | Formulas de precios para
     i =< @provider ? @provider.full_name : '"Selecciona un proveedor"'
 
-  - if @provider 
+  - if @provider
     table.w-full
       thead.bg-gray-200
         tr.text-gray-500
@@ -26,25 +26,27 @@
         - ProductBrand.all.each do |brand|
           - price_formula = brand.price_formulas.where(provider_id: @provider.id, name: "price_cost").take
           - general_formula = brand.price_formulas.where(provider_id: @provider.id, name: "general").take
-          tr.even:bg-gray-100
-            td.pl-3.text-center.font-bold = brand.name
-            td.text-center
-              = price_formula.formula
-              small.ml-3 = "(#{price_formula.final_value})"
-              = link_to 'edit', edit_price_formula_path(price_formula), class: 'ml-3 underline'
-              - if price_formula.enable
-                small.block.mr-3.text-blue-500 Habilitado
-              - else
-                small.block.mr-3.text-gray-500 Deshabilitado
+          
+          - if price_formula
+            tr.even:bg-gray-100
+              td.pl-3.text-center.font-bold = brand.name
+              td.text-center
+                = price_formula.formula
+                small.ml-3 = "(#{price_formula.final_value})"
+                = link_to 'edit', edit_price_formula_path(price_formula), class: 'ml-3 underline'
+                - if price_formula.enable
+                  small.block.mr-3.text-blue-500 Habilitado
+                - else
+                  small.block.mr-3.text-gray-500 Deshabilitado
 
-            td.text-center
-              = general_formula.formula
-              small.ml-3 = "(#{general_formula.final_value})"
-              = link_to 'edit', edit_price_formula_path(general_formula), class: 'ml-3 underline'
-              - if general_formula.enable
-                small.block.mr-3.text-blue-500 Habilitado
-              - else
-                small.block.mr-3.text-gray-500 Deshabilitado
+              td.text-center
+                = general_formula.formula
+                small.ml-3 = "(#{general_formula.final_value})"
+                = link_to 'edit', edit_price_formula_path(general_formula), class: 'ml-3 underline'
+                - if general_formula.enable
+                  small.block.mr-3.text-blue-500 Habilitado
+                - else
+                  small.block.mr-3.text-gray-500 Deshabilitado
 
   br
 

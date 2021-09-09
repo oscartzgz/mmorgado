@@ -4,6 +4,6 @@ class ProductBrand < ApplicationRecord
   has_many :price_formulas, as: :priceable
 
   after_create do
-    PriceFormulaUpdater.new().update
+    PriceFormulaUpdater.new(self).update
   end
 end
