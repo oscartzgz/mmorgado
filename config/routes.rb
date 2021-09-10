@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :price_formulas
+  resources :price_formulas do
+    member do
+      get 'toggle'
+    end
+  end
   resources :sale_point, only: :index
   resources :inventory, only: :index
   resources :products

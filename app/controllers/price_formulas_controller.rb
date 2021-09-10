@@ -1,6 +1,6 @@
 class PriceFormulasController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_price_formula, only: %i[ show edit update destroy ]
+  before_action :set_price_formula, only: %i[ show edit update destroy toggle]
 
   # GET /price_formulas or /price_formulas.json
   def index
@@ -9,13 +9,12 @@ class PriceFormulasController < ApplicationController
     @price_formulas = @q.result(distinct: true)
 
     @provider = @q.base.conditions.blank? ? nil : Provider.find(@q.base.conditions.dig(0).values.dig(0).value.to_i)
-    
+   
     @price_formulas_by_brand = @price_formulas #.where(priceable_type: 'Brand')
   end
 
   # GET /price_formulas/1 or /price_formulas/1.json
-  def show
-  end
+  def show; end
 
   # GET /price_formulas/new
   def new
@@ -28,8 +27,7 @@ class PriceFormulasController < ApplicationController
   end
 
   # GET /price_formulas/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /price_formulas or /price_formulas.json
   def create
@@ -58,6 +56,10 @@ class PriceFormulasController < ApplicationController
         format.json { render json: @price_formula.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def toggle
+    head 200 if @price_formula.toggle!(:enable)
   end
 
   # DELETE /price_formulas/1 or /price_formulas/1.json

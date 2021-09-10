@@ -63,6 +63,36 @@ main {
   .app-content {
     grid-area: main;
   }
+
+  .false-toggle-switch {
+    display: inline-block;
+    height: 10px;
+    width: 15px;
+    background-color: #CCC;
+    border-radius: 1em;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      background-color: #777;
+      width: 8px;
+      height: 8px;
+      top: 1px;
+      left: 1px;
+    }
+
+    &.active {
+      &::before {
+        background-color: #67F;
+        width: 8px;
+        height: 8px;
+        right: 1px;
+        left: auto;
+      }
+    }
+  }
 }
 
 #error_explanation {

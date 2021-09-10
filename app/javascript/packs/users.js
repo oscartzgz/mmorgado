@@ -1,6 +1,6 @@
 class UserSearch {
-  constructor(){
-    this.search_input = document.getElementById('input_search_users')
+  constructor(search_input){
+    this.search_input = search_input
     this.initListeners()
   }
 
@@ -12,5 +12,5 @@ class UserSearch {
 }
 
 document.addEventListener("turbolinks:load", () => {
-  new UserSearch
+  document.querySelectorAll('#input_search_users').forEach( el => new UserSearch(el));
 });
