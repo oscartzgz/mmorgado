@@ -27,6 +27,22 @@ class PriceFormulaUpdater
     end
   end
 
+  def self.update_all_products_prices
+    DEFAULT_FORMULAS.each do |kind, formula|
+      Product.all.each do |product|
+        Provider.all.each do |provider|
+          price_formula = provider.price_formulas.create(
+            name: kind,
+            formula: formula,
+            priceable_id: product.id,
+            priceable_type: Product.to_s
+          )
+          puts "ERROR: #{price_formula.errors.full_messages}" if price_formula.errors
+        end
+      end
+    end
+  end
+
   def update
     if @object_class == ProductBrand
       create_product_brands_prices
@@ -54,7 +70,7 @@ class PriceFormulaUpdater
     end
   end
 
-  def create_product_price(product)
+  def create_product_prices(product)
     DEFAULT_FORMULAS.each do |kind, formula|
 
       price_formula = product.provider.price_formulas.create(

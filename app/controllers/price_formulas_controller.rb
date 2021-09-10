@@ -3,6 +3,7 @@ class PriceFormulasController < ApplicationController
 
   # GET /price_formulas or /price_formulas.json
   def index
+    @priceable_target = params[:priceable_target]&.to_sym || :brands
     @q = PriceFormula.ransack(params[:q])
     @price_formulas = @q.result(distinct: true)
 

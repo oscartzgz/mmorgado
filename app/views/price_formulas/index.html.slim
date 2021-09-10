@@ -6,6 +6,7 @@
   = search_form_for @q do |f|
     .flex
       = f.select :provider_id_eq, options_from_collection_for_select(Provider.all, 'id', 'full_name', @q.provider_id_eq), {include_blank: '-Selecciona un Proveedor-'}, class: 'rounded-l-lg'
+      = hidden_field_tag :priceable_target, @priceable_target.to_s
       = f.submit 'Buscar', class: 'bg-blue-400 text-white px-3 py-2 rounded-r-lg'
 
   
@@ -19,17 +20,52 @@
     table.w-full
       thead.bg-gray-200
         tr.text-gray-500
-          th Marcas / Producto
+          th
+            => link_to 'Marcas',
+              price_formulas_path(params.permit( q: {} ).merge(priceable_target: :brands)),
+              class: "underline #{'no-underline text-blue-800' if @priceable_target == :brands}"
+            | /
+            =< link_to 'Productos', price_formulas_path(params.permit( q: {} ).merge(priceable_target: :products)), 
+              class: "underline #{'no-underline text-blue-800' if @priceable_target == :products}"
+
           th.text-center Formula Precio Costo
           th Formula General
-      tbody
-        - ProductBrand.all.each do |brand|
-          - price_formula = brand.price_formulas.where(provider_id: @provider.id, name: "price_cost").take
-          - general_formula = brand.price_formulas.where(provider_id: @provider.id, name: "general").take
+
+      - if @priceable_target == :brands
+        tbody
+          - ProductBrand.all.each do |brand|
+            - price_formula = brand.price_formulas.where(provider_id: @provider.id, name: "price_cost").take
+            - general_formula = brand.price_formulas.where(provider_id: @provider.id, name: "general").take
+            
+            - if price_formula
+              tr.even:bg-gray-100
+                td.pl-3.text-center.font-bold = brand.name
+                td.text-center
+                  = price_formula.formula
+                  small.ml-3 = "(#{price_formula.final_value})"
+                  = link_to 'edit', edit_price_formula_path(price_formula), class: 'ml-3 underline'
+                  - if price_formula.enable
+                    small.block.mr-3.text-blue-500 Habilitado
+                  - else
+                    small.block.mr-3.text-gray-500 Deshabilitado
+
+                td.text-center
+                  = general_formula.formula
+                  small.ml-3 = "(#{general_formula.final_value})"
+                  = link_to 'edit', edit_price_formula_path(general_formula), class: 'ml-3 underline'
+                  - if general_formula.enable
+                    small.block.mr-3.text-blue-500 Habilitado
+                  - else
+                    small.block.mr-3.text-gray-500 Deshabilitado
+      - elsif @priceable_target == :products
+       tbody
+        - @provider.products.all.each do |product|
+          - price_formula = product.price_formulas.where(provider_id: @provider.id, name: "price_cost").take
+          - general_formula = product.price_formulas.where(provider_id: @provider.id, name: "general").take
           
           - if price_formula
             tr.even:bg-gray-100
-              td.pl-3.text-center.font-bold = brand.name
+              td.pl-3.text-center.font-bold = product.name
               td.text-center
                 = price_formula.formula
                 small.ml-3 = "(#{price_formula.final_value})"
