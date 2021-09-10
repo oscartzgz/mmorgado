@@ -1,5 +1,5 @@
 class PriceFormulasController < ApplicationController
-  before_action :authenticate!
+  before_action :authenticate_user!
   before_action :set_price_formula, only: %i[ show edit update destroy ]
 
   # GET /price_formulas or /price_formulas.json
