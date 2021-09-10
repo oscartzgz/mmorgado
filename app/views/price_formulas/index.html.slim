@@ -61,10 +61,17 @@
                   = general_formula.formula
                   small.ml-3 = "(#{general_formula.final_value})"
                   = link_to 'edit', edit_price_formula_path(general_formula), class: 'ml-3 underline'
-                  - if general_formula.enable
-                    small.block.mr-3.text-blue-500 Habilitado
-                  - else
-                    small.block.mr-3.text-gray-500 Deshabilitado
+                  div
+                    - if general_formula.enable
+                      .flex.justify-center
+                        small.inline.block.mr-3.text-blue-500 Habilitado
+                        = link_to toggle_price_formula_path(general_formula), remote: true do
+                          span.false-toggle-switch.active
+                    - else
+                      .flex.justify-center
+                        small.block.mr-3.text-gray-500 Deshabilitado
+                        = link_to toggle_price_formula_path(general_formula), remote: true do
+                          span.false-toggle-switch
       - elsif @priceable_target == :products
        tbody
         - @provider.products.all.each do |product|
@@ -78,24 +85,32 @@
                 = price_formula.formula
                 small.ml-3 = "(#{price_formula.final_value})"
                 = link_to 'edit', edit_price_formula_path(price_formula), class: 'ml-3 underline'
-                - if price_formula.enable
-                  small.block.mr-3.text-blue-500 Habilitado
-                - else
-                  small.block.mr-3.text-gray-500 Deshabilitado
+                div
+                  - if price_formula.enable
+                    .flex.justify-center
+                      small.inline.block.mr-3.text-blue-500 Habilitado
+                      = link_to toggle_price_formula_path(price_formula), remote: true do
+                        span.false-toggle-switch.active
+                  - else
+                    .flex.justify-center
+                      small.block.mr-3.text-gray-500 Deshabilitado
+                      = link_to toggle_price_formula_path(price_formula), remote: true do
+                        span.false-toggle-switch
 
               td.text-center
                 = general_formula.formula
                 small.ml-3 = "(#{general_formula.final_value})"
                 = link_to 'edit', edit_price_formula_path(general_formula), class: 'ml-3 underline'
-                - if general_formula.enable
-                  small.block.mr-3.text-blue-500 Habilitado
-                - else
-                  small.block.mr-3.text-gray-500 Deshabilitado
+                div
+                  - if general_formula.enable
+                    .flex.justify-center
+                      small.inline.block.mr-3.text-blue-500 Habilitado
+                      = link_to toggle_price_formula_path(general_formula), remote: true do
+                        span.false-toggle-switch.active
+                  - else
+                    .flex.justify-center
+                      small.block.mr-3.text-gray-500 Deshabilitado
+                      = link_to toggle_price_formula_path(general_formula), remote: true do
+                        span.false-toggle-switch
 
   br
-
-/javascript:
-  document.body.addEventListener("ajax:success", (event) => {
-    const [data, status, xhr] = event.detail;
-    console.log(data, status, xhr)
-  });
