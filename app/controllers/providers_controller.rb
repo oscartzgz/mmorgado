@@ -1,4 +1,5 @@
 class ProvidersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_provider, only: %i[ show edit update destroy ]
 
   # GET /providers or /providers.json
