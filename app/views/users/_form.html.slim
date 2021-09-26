@@ -5,28 +5,37 @@
       ul
         - @user.errors.full_messages.each do |message|
           li = message
-  .container.grid.grid-cols-3.gap-x-3
-    = f.fields_for :profile do |ff|
-      = ff.input :name, class: :block
-      = ff.input :first_surname, class: :block
-      = ff.input :second_surname, class: :block
-      = ff.input :postal_code, class: :block
-      = ff.input :state, class: :block
-      = ff.input :location, class: :block
-      = ff.input :mobile_number, class: :block
-      = ff.input :suburb, class: :block
-      = ff.input :street, class: :block
-      = ff.input :ext_num, class: :block
-      = ff.input :int_num, class: :block
-      = ff.input :phone_number, class: :block
-      = ff.input :photo, class: :block
-  
-  hr/
-  h2.text-lg Usuario del Sistema
   .container.flex.flex-col
-    = f.input :username
-    = f.input :password, autocomplete: :off
-    = f.input :password_confirmation, autocomplete: :off
+    = f.fields_for :profile do |ff|
+      .flex.gap-5
+        = ff.input :name, label: 'Nombre', wrapper_html: { class: 'flex-1' }
+        = ff.input :first_surname, label: 'Apellido Paterno', wrapper_html: { class: 'flex-1' }
+        = ff.input :second_surname, label: 'Apellido Materno', wrapper_html: { class: 'flex-1' }
+      .flex.gap-5
+        = ff.input :postal_code, label: 'Código Postal', wrapper_html: { class: 'flex-1' }
+        = ff.input :state, label: 'Estado', wrapper_html: { class: 'flex-1' }
+        = ff.input :location, label: 'Municipio/Alcaldía', wrapper_html: { class: 'flex-1' }
+        = ff.input :mobile_number, label: 'Número de Teléfono Móvil', wrapper_html: { class: 'flex-1' }
+      .flex.gap-5
+        = ff.input :suburb, label: 'Colonia', wrapper_html: { class: 'flex-1' }
+        = ff.input :street, label: 'Calle', wrapper_html: { class: 'flex-1' }
+        .flex.gap-2.flex-1
+          = ff.input :ext_num, label: 'No. Ext', wrapper_html: { class: 'flex-1' }
+          = ff.input :int_num, label: 'No. Int', wrapper_html: { class: 'flex-1' }
+        = ff.input :phone_number, label: 'Número de Teléfono Fíjo', wrapper_html: { class: 'flex-1' }
+  
+  hr.my-4
+  h2.text-lg Usuario del Sistema
+  .flex.gap-5
+    .flex-1
+      = f.fields_for :profile do |ff|
+        = ff.input :photo, as: :file, label: 'Foto  '
+    .flex-1
+
+    .flex-1
+      = f.input :username, label: 'Nombre de Usuario'
+      = f.input :password, label: 'Contraseña', autocomplete: :off
+      = f.input :password_confirmation, label: 'Confirmar Contraseña', autocomplete: :off
 
   .actions 
     = f.submit class: "float-right bg-blue-600 text-white rounded px-3 py-0.5"
