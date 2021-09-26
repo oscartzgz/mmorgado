@@ -1,54 +1,44 @@
 .bg-white.m-16.p-5.rounded-lg.shadow
-  p#notice = notice
 
-  p
-    strong Code:
-    = @product.code
+  .flex.mb-4.gap-10
+    .flex.flex-col
+      p.text-xl
+        strong Articulo:
+        =< @product.name
+      p
+        strong Código:
+        =<> @product.code
+        strong Modelo:
+        =<> @product.model
+      p
+        strong Marca:
+        =< @product.product_brand.name
+      p
+        strong Categoría:
+        =< @product.product_category.name
+      p
+        strong Descripción:
+        =< @product.description
+      p
+        strong Proveedor:
+        =< @product.provider.full_name
+    .flex.flex-col
+      p
+        strong Stock:
+        =< @product.stock
+      p
+        strong Stock minimo:
+        =< @product.min_stock
+      p
+        strong Precio Lista:
+        =< number_to_currency @product.list_price
+      p
+        strong Precio Crédito:
+        =< number_to_currency @product.credit_price
+      p
+        strong Precio Costo:
+        =< number_to_currency @product.cost_price
 
-  p
-    strong Name:
-    = @product.name
-
-  p
-    strong Model:
-    = @product.model
-
-  p
-    strong Description:
-    = @product.description
-
-  p
-    strong List price:
-    = @product.list_price
-
-  p
-    strong Stock:
-    = @product.stock
-
-  p
-    strong Min stock:
-    = @product.min_stock
-
-  p
-    strong Credit price:
-    = @product.credit_price
-
-  p
-    strong Cost price:
-    = @product.cost_price
-
-  p
-    strong Provider:
-    = @product.provider
-
-  p
-    strong Product brand:
-    = @product.product_brand
-
-  p
-    strong Product category:
-    = @product.product_category
-
-  => link_to 'Edit', edit_product_path(@product)
+  => link_to 'Atrás', inventory_index_path
   '|
-  =< link_to 'Back', inventory_index_path
+  =< link_to 'Editar', edit_product_path(@product)
