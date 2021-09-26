@@ -22,7 +22,7 @@ body {
 }
 
 main {
-  overflow: hidden;
+  overflow: auto;
   position: absolute;
   top: 0;
   right: 0;
@@ -54,10 +54,17 @@ main {
 
   .app-menu {
     grid-area: menu;
+    position: sticky;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
   }
 
   .app-header {
     grid-area: header;
+    position: sticky;
+    top: 0px;
+    right: 0px;
   }
 
   .app-content {
