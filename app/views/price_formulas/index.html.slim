@@ -43,7 +43,7 @@
                 td.text-center
                   div 
                     = price_formula.formula
-                    small.ml-3 = "(#{price_formula.final_value})"
+                    small.ml-3.font-thin = "= #{price_formula.final_value}"
                     = link_to 'edit', edit_price_formula_path(price_formula), class: 'ml-3 underline'
                   div
                     - if price_formula.enable
@@ -59,7 +59,7 @@
 
                 td.text-center
                   = general_formula.formula
-                  small.ml-3 = "(#{general_formula.final_value})"
+                  small.ml-3.font-thin = "= #{general_formula.final_value}"
                   = link_to 'edit', edit_price_formula_path(general_formula), class: 'ml-3 underline'
                   div
                     - if general_formula.enable
@@ -80,7 +80,9 @@
           
           - if price_formula
             tr.even:bg-gray-100
-              td.pl-3.text-center.font-bold = product.name
+              td.pl-3.text-center
+                span.font-bold = product.name
+                span.font-thin =< product.product_brand.name
               td.text-center
                 = price_formula.formula
                 small.ml-3 = "(#{price_formula.final_value})"
@@ -114,3 +116,7 @@
                         span.false-toggle-switch
 
   br
+
+.container.mx-16.mb-3
+  p.text-xs.text-white
+    i  * Las formulas de un producto tienen precedencia sobre las de marca

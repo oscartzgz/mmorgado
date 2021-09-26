@@ -1,37 +1,37 @@
 h1.text-xl.font-bold Lista de Productos
 
-= link_to '+ New Product', new_product_path, class: 'float-right bg-green-600 text-white px-3 rounded visited:text-white'
+= link_to '+ Nuevo Artículo', new_product_path, class: 'float-right bg-green-600 text-white px-3 rounded visited:text-white'
 
 table.w-full.table-fixed
   thead.bg-gray-200
     tr.text-gray-500
-      th Code
-      th Articulo
-      th Brand
-      th Description
-      th List price
-      th Cost price
-      th Stock
-      th Provider
+      th width="150" Código
+      th Artículo
+      th Marca
+      th Descripción
+      th.text-right Precio Lista
+      th.text-right Precio Costo
+      th.text-center width="100" Stock
+      th Proveedor
       th
 
   tbody
     - products.each do |product|
       tr.even:bg-gray-100.hover:bg-gray-600.hover:text-white
-        td = product.code
+        td.text-center = product.code
         td = product.name
         td = product.product_brand&.name
         td = product.description
-        td = product.list_price
-        td = product.cost_price
-        td = product.stock
-        td = product.provider&.full_name
+        td.text-right = number_to_currency(product.list_price)
+        td.text-right = number_to_currency(product.cost_price)
+        td.text-center = product.stock
+        td.text-center = product.provider&.full_name
         td
-          = link_to 'Show', product
+          = link_to 'Ver', product
           =<> "|"
-          = link_to 'Edit', edit_product_path(product)
+          = link_to 'Editar', edit_product_path(product)
           =<> "|"
-          = link_to 'Destroy', product, data: { confirm: 'Are you sure?' }, method: :delete
+          = link_to 'Eliminar', product, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 

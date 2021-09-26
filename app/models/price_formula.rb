@@ -7,6 +7,9 @@ class PriceFormula < ApplicationRecord
                         message: 'La formula no tiene la estructura correcta' }
   validates :name, uniqueness: { scope: [:priceable_type, :priceable_id, :provider_id] }
 
+  scope :active,   -> { where(enable: true) }
+  scope :inactive, -> { where(enable: false) }
+
   def final_value
     values = formula.split(/[+-]/).map(&:to_i)
     signs  = formula.split(/\d+/).reject(&:empty?)

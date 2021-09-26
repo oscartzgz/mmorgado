@@ -2,19 +2,24 @@
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .form-inputs.grid.grid-cols-2.gap-x-5
-    = f.input :code
-    = f.input :name
-    = f.input :model
-    = f.input :description
-    = f.input :list_price
-    = f.input :stock
-    = f.input :min_stock
-    = f.input :credit_price
-    = f.input :cost_price
-    = f.association :provider, label_method: :full_name
-    = f.association :product_brand
-    = f.association :product_category
-
-  .form-actions
-    = f.button :submit
+  .form-inputs.flex.gap-5.w-full
+    div.flex.flex-col
+      = f.input :code, label: 'Código'
+      = f.input :name, label: 'Artículo'
+      = f.input :model, label: 'Modelo'
+      = f.input :list_price, label: 'Precio Lista'
+      = f.association :product_category, label: 'Categoría'
+      = f.association :product_brand, label: 'Marca'
+      = f.association :provider, label: 'Proveedor', label_method: :full_name
+    div.flex.flex-col.justify-between
+      div
+        = f.input :description, label: 'Descripción', input_html: {rows: 6}
+        .flex.gap-5
+          = f.input :stock
+          = f.input :min_stock, label: 'Stock Minimo'
+        .flex.gap-5
+          = f.input :cost_price, label: 'Precio Costo', disabled: true
+          = f.input :credit_price, label: 'Precio Crédito', disabled: true
+      div
+        .form-actions
+          = f.button :submit
