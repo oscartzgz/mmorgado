@@ -1,29 +1,39 @@
 .bg-white.m-16.p-5.rounded-lg.shadow
   h1.text-xl.mb-5.font-bold Datos del usuario
-  
-  .container
+  .flex.gap-5
     div
-      h2.text-lg.font-bold System User
-      div = @user.username
-      div = @user.email
-    div
-      h2.text-lg.font-bold Full name
-      = "#{@user.profile&.name} #{@user.profile&.first_surname} #{@user.profile&.second_surname}"
-    div
-      h2.text-lg.font-bold Address
-      div = @user.profile&.postal_code
-      div = @user.profile&.state
-      div = @user.profile&.location
-      div = @user.profile&.suburb
-      div = @user.profile&.street
-    div
-      h2.text-lg.font-bold Other Info
-    div = @user.profile&.mobile_number
-    div = @user.profile&.ext_num
-    div = @user.profile&.int_num
-    div = @user.profile&.phone_number
-    div = @user.profile&.photo
+      -if @user.profile&.photo.attached?
+        = image_tag @user.profile&.photo&.variant(resize_to_limit: [300, 300]), class: 'rounded-lg shadow-lg'
+    .container
+      div.mb-4
+        h2.text-2xl.font-thin Usuario de Sistema
+        p
+          strong Nombre de Usuario:
+          =< @user.username
+        p
+          strong Email:
+          =< @user.email
+      div.mb-4
+        h2.text-2xl.font-thin Nombre Completo
+        = "#{@user.profile&.name} #{@user.profile&.first_surname} #{@user.profile&.second_surname}"
+      div.mb-4
+        h2.text-2xl.font-thin Dirección
+        div = @user.profile&.postal_code
+        div = @user.profile&.state
+        div = @user.profile&.location
+        div = @user.profile&.suburb
+        div = @user.profile&.street
+        div = @user.profile&.ext_num
+        div = @user.profile&.int_num
+      div
+        h2.text-2xl.font-thin Más Información
+        p 
+          strong Número Mobil:
+          =< @user.profile&.mobile_number
+        p 
+          strong Número Fíjo:
+          =< @user.profile&.phone_number
 
-  => link_to 'Edit', edit_user_path(@user)
+  => link_to 'Atrás', users_path
   '|
-  =< link_to 'Back', users_path
+  =< link_to 'Editar', edit_user_path(@user)

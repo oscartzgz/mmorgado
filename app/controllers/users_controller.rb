@@ -44,8 +44,10 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
+    filtered_params = user_params.except("password", "password_confirmation") if user_params["password"].blank?
+    
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(filtered_params)
         format.html { redirect_to @user, notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else

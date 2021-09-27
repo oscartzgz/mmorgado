@@ -38,7 +38,10 @@ class User < ApplicationRecord
 
   def validate_email_presence
     self.email = "#{Time.now.to_i}@example.com" if self.email.blank?
-    self.password = SecureRandom.hex(30) if self.password.blank?
-    self.password_confirmation = self.password
+    
+    if self.password.blank? and self.encrypted_password.blank?
+      self.password = SecureRandom.hex(30)
+      self.password_confirmation = self.password
+    end
   end
 end
