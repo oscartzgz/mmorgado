@@ -2,29 +2,34 @@
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .form-inputs.grid.grid-cols-3.gap-x-3
-    = f.input :name
-    = f.input :first_surname
-    = f.input :second_surname
-    = f.input :address
-    = f.input :location
-    = f.input :state
-    = f.input :country, as: :string
-    = f.input :postal_code
-    = f.input :email
-    = f.input :mobile_number
-    = f.input :phone_number
+  .form-inputs
+    .flex.mb-2.gap-5
+      = f.input :name, label: 'Nombre', wrapper_class: 'flex-1'
+      = f.input :first_surname, label: 'Apellido Paterno', wrapper_class: 'flex-1'
+      = f.input :second_surname, label: 'Apellido Materno', wrapper_class: 'flex-1'
+    .grid.grid-cols-3.mb-2.gap-5
+      = f.input :address, label: 'Dirección', wrapper_class: 'col-span-2'
+      = f.input :email, label: 'Correo', wrapper_class: 'flex-1'
+    .grid.grid-cols-4.mb-2.gap-5
+      = f.input :location, label: 'Ciudad'
+      = f.input :country, label: 'País', as: :string
+      = f.input :postal_code, label: 'Código Postal'
+      = f.input :mobile_number, label: 'Número de Telefono Móvil'
+      /= f.input :state, label: 'Estado'
+    .grid.grid-cols-4.mb-2.gap-5
+      = f.input :phone_number, label: 'Número de Telefono Fijo', wrapper_class: 'col-start-4'
   br
-  h2.text.lg.font-bold Referencia Aval
-  .container.grid.grid-cols-3.gap-x-3
-    = f.input :endorsement_full_name
-    = f.input :endorsement_mobile_phone
-    = f.input :endorsement_phone_number
-    = f.input :endorsement_address
-    = f.input :endorsement_location
-    = f.input :endorsement_country, as: :string
-    = f.input :endorsement_postal_code
-    = f.input :endorsement_relationship
+  h2.text.lg.font-bold.mb-4 Referencia Aval
+  hr.mb-2
+  .container.grid.grid-cols-4.gap-x-3
+    = f.input :endorsement_full_name, label: 'Nombre Completo', wrapper_class: 'col-span-2'
+    = f.input :endorsement_mobile_phone, label: 'Número de Teléfono Móvil'
+    = f.input :endorsement_phone_number, label: 'Número de Teléfono Fijo'
+    = f.input :endorsement_address, label: 'Dirección', wrapper_class: 'col-span-3'
+    = f.input :endorsement_location, label: 'Ciudad'
+    = f.input :endorsement_country, label: 'País', as: :string
+    = f.input :endorsement_postal_code, label: 'Código Postal'
+    = f.input :endorsement_relationship, label: 'Parentesco'
 
-  .form-actions
-    = f.button :submit
+    .form-actions.self-end
+      = f.button :submit
