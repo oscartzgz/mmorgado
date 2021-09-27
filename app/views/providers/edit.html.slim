@@ -1,8 +1,8 @@
-.bg-white.m-16.p-5.rounded-lg.shadow
-  h1.text-xl.mb-5.font-bold Editing provider
+.bg-white.m-16.p-5.rounded-lg.shadow.xl:w-1/2.xl:mx-auto
+  h1.text-xl.mb-5.font-bold Editando Proveedor
 
   == render 'form'
 
-  => link_to 'Show', @provider
+  => link_to 'Atrás', providers_path
   '|
-  =< link_to 'Back', providers_path
+  =< link_to 'Ver', @provider

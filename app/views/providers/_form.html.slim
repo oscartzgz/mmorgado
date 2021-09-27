@@ -2,20 +2,20 @@
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .form-inputs.grid.grid-cols-3.gap-x-3
-    = f.input :full_name
-    = f.input :phone_number
-    = f.input :address
-    = f.input :city
-    = f.input :country, as: :string
-    = f.input :postal_code
+  .form-inputs.grid.grid-cols-6.gap-x-5.gap-y-1
+    = f.input :full_name, label: 'Nombre Completo', wrapper_class: 'col-span-3'
+    = f.input :phone_number, label: 'Número de Teléfono', wrapper_class: 'col-span-3'
+    = f.input :address, label: 'Dirección', wrapper_class: 'col-span-6'
+    = f.input :city, label: 'Ciudad', wrapper_class: 'col-span-2'
+    = f.input :country, as: :string, label: 'País', wrapper_class: 'col-span-2'
+    = f.input :postal_code, label: 'Código Postal', wrapper_class: 'col-span-2'
   br
   h2.text-lg.font-bold.mb-3 Contacto
-  .container.grid.grid-cols-3.gap-x-3
-    = f.input :contact_full_name
-    = f.input :contact_email
-    = f.input :contact_phone_number
-    = f.input :contact_mobile_number
+  .container.grid.grid-cols-2.gap-x-3
+    = f.input :contact_full_name, label: 'Nombre Completo'
+    = f.input :contact_email, label: 'Correo'
+    = f.input :contact_phone_number, label: 'Número de Teléfono Móvil'
+    = f.input :contact_mobile_number, label: 'Número de Teléfono Fijo'
 
-  .form-actions
+  .form-actions.mt-4
     = f.button :submit

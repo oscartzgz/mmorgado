@@ -24,10 +24,10 @@
           td = provider.address
           td = provider.contact_full_name
           td
-            = link_to 'Show', provider
+            = link_to 'Ver', provider
             =<> "|"
-            = link_to 'Edit', edit_provider_path(provider)
+            = link_to 'Editar', edit_provider_path(provider)
             =<> "|"
-            = link_to 'Destroy', provider, data: { confirm: 'Are you sure?' }, method: :delete
+            = link_to 'Eliminar', provider, data: { confirm: 'Are you sure?' }, method: :delete
 
   br
