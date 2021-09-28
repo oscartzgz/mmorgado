@@ -1,6 +1,13 @@
 .container.m-16
   .flex.gap-5
-    input.client-search.h-12.w-full.px-5.py-0.5.text-lg.rounded-full type="text" placeholder="Buscar Cliente" /
+    .relative.flex-grow
+      input#sp_search_client.client-search.h-12.w-full.px-5.py-0.5.text-lg.rounded-full type="text" placeholder="Buscar Cliente" /
+      #sp_search_results.absolute.p-3.top-12.left-4.right-4.bg-white.border-l-2.border-b-2.border-r-2.border-gray-400.shadow.rounded-b-lg.hidden
+        ul
+          li.cursor-pointer.hover:bg-blue-500.hover:text-white onclick="alert(this)" Opción 1
+          li.cursor-pointer.hover:bg-blue-500.hover:text-white Opción 2
+          li.cursor-pointer.hover:bg-blue-500.hover:text-white Opción 3
+    .flex.flex-column
     = link_to 'Nuevo Cliente', new_client_path, class: 'flex items-center font-bold inline-block text-center bg-green-500 text-white rounded-lg px-5 whitespace-nowrap'
 
   .bg-white.my-10.p-0.rounded-lg.shadow.overflow-hidden

@@ -31,6 +31,8 @@ gem 'slim-rails'
 gem 'devise'
 gem 'simple_form'
 gem 'ransack'
+gem 'pg_search'
+gem 'active_model_serializers'
 
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'
