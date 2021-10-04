@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'admin/index'
+  post 'admin/import'
   namespace :api do
     namespace :v1 do
       resources :clients, only: %i(index)

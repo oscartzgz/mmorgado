@@ -12,13 +12,15 @@ class User < ApplicationRecord
   validate :validate_username
 
   before_validation :validate_email_presence
-  
+
+  enum role: { default: 0, admin: 999 }
+
   attr_writer :login
-  
+
   def login
     @login || self.username || self.email
   end
-  
+
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
@@ -27,18 +29,22 @@ class User < ApplicationRecord
       where(conditions.to_h).first
     end
   end
-  
+
   def validate_username
     if User.where(email: username).exists?
       errors.add(:username, :invalid)
     end
   end
 
+  def is_admin?
+    role == 'admin'
+  end
+
   protected
 
   def validate_email_presence
     self.email = "#{Time.now.to_i}@example.com" if self.email.blank?
-    
+
     if self.password.blank? and self.encrypted_password.blank?
       self.password = SecureRandom.hex(30)
       self.password_confirmation = self.password

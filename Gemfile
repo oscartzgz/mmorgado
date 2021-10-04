@@ -33,6 +33,7 @@ gem 'simple_form'
 gem 'ransack'
 gem 'pg_search'
 gem 'active_model_serializers'
+gem 'roo', '~> 2.8.0'
 
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'

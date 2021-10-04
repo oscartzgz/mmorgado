@@ -6,5 +6,5 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.destroy_all
-admin = User.create_with(username: 'admin', password: "Morgado12$").find_or_create_by(email: "admin@mmorgado.com")
+admin = User.create_with(username: 'admin', password: "Morgado12$", role: :admin).find_or_create_by(email: "admin@mmorgado.com")
 admin.create_profile

@@ -13,4 +13,5 @@ header.app-header
           svg xmlns="http://www.w3.org/2000/svg" class="inline h-8 w-8" viewBox="0 0 20 20" fill="currentColor"
             path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"
 
-      span.font-bold Administrador
+      span.font-bold
+        = link_to 'Administrador', admin_index_path if current_user.is_admin? 
