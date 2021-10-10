@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_04_022338) do
+ActiveRecord::Schema.define(version: 2021_10_10_045909) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -65,6 +66,9 @@ ActiveRecord::Schema.define(version: 2021_10_04_022338) do
     t.string "endorsement_relationship"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "positive_balance", precision: 10, scale: 2, default: "0.0"
+    t.string "code", null: false
+    t.index ["code"], name: "index_clients_on_code"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
