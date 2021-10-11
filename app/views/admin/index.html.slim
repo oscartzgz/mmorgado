@@ -26,7 +26,7 @@
     br/
     br/
 
-    -if @import_data&.errors
+    -if @import_data&.errors&.any?
       div
         h3.bg-red-500.text-white.px-4.py-1.rounded-t Ups! Hubo un error al importar la información, estos son los detalles:
         ul.bg-gray-100.px-4.py-2.shadow.rounded-b

@@ -55,17 +55,34 @@ class PriceFormulaUpdater
 
   # Create product brand price for all providers
   def create_product_brands_prices
+
     DEFAULT_FORMULAS.each do |kind, formula|
+
       @objects.each do |product_brand|
-        Provider.all.each do |provider|
-          price_formula = provider.price_formulas.create(
+        # Formula brand should be created for all distributors providers
+        # and for only for a maker provider that match in the name
+        formulas_attributes = Provider.where(kind: 'Distribuidor').map do |provider|
+          {
+            name: kind,
+            formula: formula,
+            provider_id: provider.id,
+            priceable_id: product_brand.id,
+            priceable_type: @object_class.to_s,
+            created_at: Time.now,
+            updated_at: Time.now
+          }
+        end
+        PriceFormula.upsert_all(formulas_attributes)
+
+        Provider.where('lower(full_name) = ?', product_brand.name.downcase).each do |provider|
+          price_formula = provider.price_formulas.find_or_create_by(
             name: kind,
             formula: formula,
             priceable_id: product_brand.id,
             priceable_type: @object_class.to_s
           )
-          puts "ERROR: #{price_formula.errors.full_messages}" if price_formula.errors
         end
+
       end
     end
   end

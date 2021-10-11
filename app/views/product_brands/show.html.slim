@@ -1,12 +1,12 @@
 .bg-white.m-16.p-5.rounded-lg.shadow
   p
-    strong Name:
+    strong Nombre:
     = @product_brand.name
 
   p
-    strong Active:
+    strong Activa:
     = @product_brand.active
 
-  => link_to 'Edit', edit_product_brand_path(@product_brand)
+  => link_to 'Editar', edit_product_brand_path(@product_brand)
   '|
-  =< link_to 'Back', product_brands_path
+  =< link_to 'Atrás', product_brands_path

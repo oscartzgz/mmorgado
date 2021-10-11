@@ -1,4 +1,7 @@
 nav {
+  position: sticky;
+  top: 0;
+
   a:visited {
     color: white;
   }
@@ -12,6 +15,11 @@ nav {
     background-color: #f1dc03;
     color: #555;
     font-weight: bold;
+  }
+
+  .main-menu {
+    position: sticky;
+    top: 0;
   }
 
   .main-menu img {

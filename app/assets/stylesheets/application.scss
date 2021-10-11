@@ -22,7 +22,6 @@ body {
 }
 
 main {
-  overflow: auto;
   position: absolute;
   top: 0;
   right: 0;
@@ -35,6 +34,9 @@ main {
   grid-template-columns: min-content 1fr;
 
   .app-main {
+    grid-area: main;
+    overflow: auto;
+
     &.login {
       grid-area: menu / header / main;
       align-self: center;
@@ -61,7 +63,7 @@ main {
     }
 
     .alert {
-      color: indianred;
+      color: rgb(255, 122, 122);
     }
   }
 
@@ -82,12 +84,13 @@ main {
 
   .app-content {
     grid-area: main;
+    overflow: auto;
   }
 
   .false-toggle-switch {
     display: inline-block;
-    height: 10px;
-    width: 15px;
+    height: 12px;
+    width: 20px;
     background-color: #CCC;
     border-radius: 1em;
     position: relative;
@@ -95,24 +98,19 @@ main {
     &::before {
       content: '';
       position: absolute;
+      background-color: #777;
+      border-radius: 50%;
+      right: auto;
+      left: 1px;
+      width: 10px;
+      height: 10px;
+      margin-top: 1px;
+    }
 
-      @keyframes signup-response {
-        from {
-          opacity: 1;
-        }
-
-        to {
-          opacity: 0;
-        }
-      }
-
-      &::before {
-        background-color: #67F;
-        width: 8px;
-        height: 8px;
-        right: 1px;
-        left: auto;
-      }
+    &.active::before {
+      background-color: #67F;
+      right: 1px;
+      left: auto;
     }
   }
 }
@@ -139,7 +137,7 @@ main {
 }
 
 table {
-  font-size: .9rem;
+  font-size: 1em;
 }
 
 

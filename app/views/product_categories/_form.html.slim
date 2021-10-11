@@ -1,10 +1,11 @@
-= simple_form_for @product_category, html: { class: 'default' } do |f|
+= simple_form_for @product_category, html: { class: 'default w-1/4' } do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .form-inputs
-    = f.input :name
-    = f.input :active
+  .form-inputs.mb-3
+    = f.input :name, label: 'Nombre'
+  .form-inputs.mb-3
+    = f.input :active, label: 'Activo', input_html: {class: 'mr-2'}
 
   .form-actions
     = f.button :submit

@@ -9,21 +9,23 @@
 
   table.w-full.table-fixed
     thead
-      tr
-        th Proveedor
-        th Telefono
-        th Dirección
-        th Contacto
-        th
+      tr.bg-gray-200
+        th.px-2.text-left Proveedor
+        th.px-2.text-center width="150" Tipo
+        th.px-2.text-center width="150" Telefono
+        th.px-2 Dirección
+        th.px-2.text-center width="200" Contacto
+        th.px-2
 
     tbody
       - @providers.each do |provider|
         tr
-          td = provider.full_name
-          td = provider.phone_number
-          td = provider.address
-          td = provider.contact_full_name
-          td
+          td.px-2 = provider.full_name
+          td.px-2.text-center = provider.kind
+          td.px-2.text-center = provider.phone_number
+          td.px-2 = provider.address
+          td.px-2.text-center = provider.contact_full_name
+          td.px-2.text-right
             = link_to 'Ver', provider
             =<> "|"
             = link_to 'Editar', edit_provider_path(provider)

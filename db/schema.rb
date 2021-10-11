@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_10_045909) do
+ActiveRecord::Schema.define(version: 2021_10_10_233436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(version: 2021_10_10_045909) do
     t.string "endorsement_country"
     t.string "endorsement_postal_code"
     t.string "endorsement_relationship"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.decimal "positive_balance", precision: 10, scale: 2, default: "0.0"
     t.string "code", null: false
     t.index ["code"], name: "index_clients_on_code"
@@ -120,8 +120,10 @@ ActiveRecord::Schema.define(version: 2021_10_10_045909) do
     t.bigint "provider_id", null: false
     t.bigint "product_brand_id", null: false
     t.bigint "product_category_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.decimal "pp_price", precision: 10, scale: 2, default: "0.0"
+    t.decimal "cash_price", precision: 10, scale: 2, default: "0.0"
     t.index ["product_brand_id"], name: "index_products_on_product_brand_id"
     t.index ["product_category_id"], name: "index_products_on_product_category_id"
     t.index ["provider_id"], name: "index_products_on_provider_id"
@@ -158,8 +160,8 @@ ActiveRecord::Schema.define(version: 2021_10_10_045909) do
     t.string "contact_email"
     t.string "contact_phone_number"
     t.string "contact_mobile_number"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.string "code", null: false
     t.string "kind"
     t.string "email"

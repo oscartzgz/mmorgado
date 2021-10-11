@@ -1,12 +1,14 @@
 .bg-white.m-16.p-5.rounded-lg.shadow
-  p
-    strong Name:
-    = @product_category.name
+  h1.text-2xl.font-bold.mb-5 Categoría de producto
+  .details.mb-5
+    p
+      strong Nombre:
+      =< @product_category.name
 
-  p
-    strong Active:
-    = @product_category.active
+    p
+      strong Activa:
+      =< @product_category.active? ? 'Si' : 'No'
 
-  => link_to 'Edit', edit_product_category_path(@product_category)
+  => link_to 'Editar', edit_product_category_path(@product_category)
   '|
-  =< link_to 'Back', product_categories_path
+  =< link_to 'Atrás', product_categories_path
