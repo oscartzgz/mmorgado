@@ -1,0 +1,15 @@
+td.text-center
+  = price_formula&.formula
+  | %
+  = link_to 'edit', edit_price_formula_path(price_formula), class: 'ml-3 underline'
+  div
+    - if price_formula&.enable
+      .flex.justify-center.items-center
+        small.inline.block.mr-3.text-blue-500 Habilitado
+        = link_to toggle_price_formula_path(price_formula), remote: true do
+          span.false-toggle-switch.active
+    - elsif price_formula
+      .flex.justify-center.items-center
+        small.block.mr-3.text-gray-500 Deshabilitado
+        = link_to toggle_price_formula_path(price_formula), remote: true do
+          span.false-toggle-switch

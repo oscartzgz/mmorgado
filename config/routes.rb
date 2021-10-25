@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  namespace :providers do
+    get 'purchases/index'
+  end
   get 'admin/index'
   post 'admin/import'
   namespace :api do
     namespace :v1 do
       resources :clients, only: %i(index)
+      resources :providers, only: %i(index)
     end
   end
   resources :price_formulas do

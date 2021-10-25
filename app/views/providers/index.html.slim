@@ -1,4 +1,7 @@
 .container.mt-16.mx-16.mb-3
+  .flex.px-12.justify-end.gap-5
+    = link_to 'COMPRAS', providers_purchases_index_path, class: 'text-white border-2 rounded px-5 border-white hover:bg-white hover:text-gray-900 visited:text-white'
+
   = search_form_for @q do |f|
     = f.search_field :full_name_cont, placeholder: 'Buscar Proveedor' ,class: 'rounded-l-lg'
     = f.submit 'Buscar', class: 'bg-blue-400 text-white px-3 py-2 rounded-r-lg'

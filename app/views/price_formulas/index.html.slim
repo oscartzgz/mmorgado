@@ -1,11 +1,10 @@
-/.my-10.mx-16
-  - if @provider
-    = link_to '+ New Price formula', new_price_formula_path(provider_id: @provider.id, model_type: 'ProductBrand'), class: 'bg-yellow-400 text-gray-700 px-5 py-0.5 rounded border-yellow-500 border-2 float-right'
-
 .container.mt-16.mx-16.mb-3
   = search_form_for @q do |f|
     .flex
-      = f.select :provider_id_eq, options_from_collection_for_select(Provider.all, 'id', 'full_name', @q.provider_id_eq), {include_blank: '-Selecciona un Proveedor-'}, class: 'rounded-l-lg'
+      = f.select  :provider_id_eq,
+                  options_from_collection_for_select(Provider.all.order(:kind, :full_name), 'id', 'full_name_and_kind', @q.provider_id_eq),
+                  {include_blank: '-Selecciona un Proveedor-'},
+                  class: 'rounded-l-lg'
       = hidden_field_tag :priceable_target, @priceable_target.to_s
       = f.submit 'Buscar', class: 'bg-blue-400 text-white px-3 py-2 rounded-r-lg'
 
@@ -14,106 +13,118 @@
 
   h1.mb-8.text-lg.font-bold
     | Formulas de precios para
-    i =< @provider ? @provider.full_name : '"Selecciona un proveedor"'
-
-  - if @provider
-    table.w-full
+    i =< @provider ? @provider.full_name : 'Selecciona un proveedor'
+  div.overflow-x-auto
+    table.w-full.table-fixed
       thead.bg-gray-200
-        tr.text-gray-500
-          th
-            => link_to 'Marcas',
-              price_formulas_path(params.permit( q: {} ).merge(priceable_target: :brands)),
-              class: "underline #{'no-underline text-blue-800' if @priceable_target == :brands}"
-            | /
-            =< link_to 'Productos', price_formulas_path(params.permit( q: {} ).merge(priceable_target: :products)), 
-              class: "underline #{'no-underline text-blue-800' if @priceable_target == :products}"
+        tr.text-gray-600
+          th width="300"
+            = link_to price_formulas_path(params.permit( q: {} ).merge(priceable_target: :brands)),
+                       class: "#{'no-underline text-blue-800' if @priceable_target == :brands}" do 
+              input> type="radio" checked=(@priceable_target == :brands)
+              | Marcas
 
-          th.text-center Formula Precio Costo
-          th Formula General
+            =<> "/"
+
+            = link_to  price_formulas_path(params.permit( q: {} ).merge(priceable_target: :products)), 
+                        class: "#{'no-underline text-blue-800' if @priceable_target == :products}" do
+              input> type="radio" checked=(@priceable_target == :products)
+              | Productos
+
+          -if @priceable_target == :products
+            th.align-top width="100" Precio Lista
+          th.align-top.text-center width="230"
+            | Precio Costo
+            div: small.font-normal.text-gray-700
+              | Precio Lista
+              strong<> + N %
+          th.align-top.text-center width="230"
+            | Precio Crédito
+          th.align-top.text-center width="230"
+            | Precio Contado PP
+            div: small.font-normal.text-gray-700
+              | Precio Crédito
+              strong<> - N %
+          th.align-top.text-center width="230"
+            | Precio Cash
+            div: small.font-normal.text-gray-700
+              | Precio PP
+              strong<> - N %
+          th.align-top.text-center width="230"
+            | Precio Expo Contado PP
+            div: small.font-normal.text-gray-700
+              | Precio Lista
+              strong<> + N %
+          th.align-top.text-center width="230"
+            | Precio Expo Tarjeta
+            div: small.font-normal.text-gray-700
+              | Precio Expo PP
+              strong<> + N %
+          th.align-top.text-center width="230"
+            | Precio Navideña Contado PP
+            div: small.font-normal.text-gray-700
+              | Precio Crédito
+              strong<> - N %
+          th.align-top.text-center width="230"
+            | Precio Navideña Cash
+            div: small.font-normal.text-gray-700
+              | Precio Crédito
+              strong<> - N %
 
       - if @priceable_target == :brands
         tbody
-          - ProductBrand.all.each do |brand|
-            - price_formula = brand.price_formulas.where(provider_id: @provider.id, name: "price_cost").take
-            - general_formula = brand.price_formulas.where(provider_id: @provider.id, name: "general").take
-            
-            - if price_formula
+          - @provider.product_brands.includes(:price_formulas).all.each do |brand|
+            - formula_price = brand.price_formulas.where(kind: :cost_price)&.take
+            - formula_credit_price = brand.price_formulas.where(kind: :credit_price)&.take
+            - formula_pp_cash_price = brand.price_formulas.where(kind: :pp_cash_price)&.take
+            - formula_cash_price = brand.price_formulas.where(kind: :cash_price)&.take
+            - formula_expo_pp_cash_price = brand.price_formulas.where(kind: :expo_pp_cash_price)&.take
+            - formula_expo_card_price = brand.price_formulas.where(kind: :expo_card_price)&.take
+            - formula_christmas_pp_cash_price = brand.price_formulas.where(kind: :christmas_pp_cash_price)&.take
+            - formula_christmas_cash_price = brand.price_formulas.where(kind: :christmas_cash_price)&.take
+
+            - if formula_price
               tr.even:bg-gray-100
                 td.pl-3.text-center.font-bold = brand.name
-                td.text-center
-                  div 
-                    = price_formula.formula
-                    small.ml-3.font-thin = "= #{price_formula.final_value}"
-                    = link_to 'edit', edit_price_formula_path(price_formula), class: 'ml-3 underline'
-                  div
-                    - if price_formula.enable
-                      .flex.justify-center.items-center
-                        small.inline.block.mr-3.text-blue-500 Habilitado
-                        = link_to toggle_price_formula_path(price_formula), remote: true do
-                          span.false-toggle-switch.active
-                    - else
-                      .flex.justify-center.items-center
-                        small.block.mr-3.text-gray-500 Deshabilitado
-                        = link_to toggle_price_formula_path(price_formula), remote: true do
-                          span.false-toggle-switch
+                -if @priceable_target == :products
+                  td {Precio Lista}
 
-                td.text-center
-                  = general_formula.formula
-                  small.ml-3.font-thin = "= #{general_formula.final_value}"
-                  = link_to 'edit', edit_price_formula_path(general_formula), class: 'ml-3 underline'
-                  div
-                    - if general_formula.enable
-                      .flex.justify-center.items-center
-                        small.inline.block.mr-3.text-blue-500 Habilitado
-                        = link_to toggle_price_formula_path(general_formula), remote: true do
-                          span.false-toggle-switch.active
-                    - else
-                      .flex.justify-center.items-center
-                        small.block.mr-3.text-gray-500 Deshabilitado
-                        = link_to toggle_price_formula_path(general_formula), remote: true do
-                          span.false-toggle-switch
+                = render 'brand_formula_column', price_formula: formula_price
+                = render 'brand_formula_column', price_formula: formula_credit_price
+                = render 'brand_formula_column', price_formula: formula_pp_cash_price
+                = render 'brand_formula_column', price_formula: formula_cash_price
+                = render 'brand_formula_column', price_formula: formula_expo_pp_cash_price
+                = render 'brand_formula_column', price_formula: formula_expo_card_price
+                = render 'brand_formula_column', price_formula: formula_christmas_pp_cash_price
+                = render 'brand_formula_column', price_formula: formula_christmas_cash_price
+
       - elsif @priceable_target == :products
        tbody
-        - @provider.products.all.each do |product|
-          - price_formula = product.price_formulas.where(provider_id: @provider.id, name: "price_cost").take
-          - general_formula = product.price_formulas.where(provider_id: @provider.id, name: "general").take
+        - @provider.products.each do |product|
+          - cost_price = product.price_formulas.where(kind: "cost_price").take
+          - credit_price = product.price_formulas.where(kind: "credit_price").take
+          - pp_cash_price = product.price_formulas.where(kind: "pp_cash_price").take
+          - cash_price = product.price_formulas.where(kind: "cash_price").take
+          - expo_pp_cash_price = product.price_formulas.where(kind: "expo_pp_cash_price").take
+          - expo_card_price = product.price_formulas.where(kind: "expo_card_price").take
+          - christmas_pp_cash_price = product.price_formulas.where(kind: "christmas_pp_cash_price").take
+          - christmas_cash_price = product.price_formulas.where(kind: "christmas_cash_price").take
           
-          - if price_formula
-            tr.even:bg-gray-100
-              td.pl-3.text-center
-                span.font-bold = product.name
-                span.font-thin =< product.product_brand.name
-              td.text-center
-                = price_formula.formula
-                small.ml-3 = "(#{price_formula.final_value})"
-                = link_to 'edit', edit_price_formula_path(price_formula), class: 'ml-3 underline'
-                div
-                  - if price_formula.enable
-                    .flex.justify-center.items-center
-                      small.inline.block.mr-3.text-blue-500 Habilitado
-                      = link_to toggle_price_formula_path(price_formula), remote: true do
-                        span.false-toggle-switch.active
-                  - else
-                    .flex.justify-center.items-center
-                      small.block.mr-3.text-gray-500 Deshabilitado
-                      = link_to toggle_price_formula_path(price_formula), remote: true do
-                        span.false-toggle-switch
-
-              td.text-center
-                = general_formula.formula
-                small.ml-3 = "(#{general_formula.final_value})"
-                = link_to 'edit', edit_price_formula_path(general_formula), class: 'ml-3 underline'
-                div
-                  - if general_formula.enable
-                    .flex.justify-center.items-center
-                      small.inline.block.mr-3.text-blue-500 Habilitado
-                      = link_to toggle_price_formula_path(general_formula), remote: true do
-                        span.false-toggle-switch.active
-                  - else
-                    .flex.justify-center.items-center
-                      small.block.mr-3.text-gray-500 Deshabilitado
-                      = link_to toggle_price_formula_path(general_formula), remote: true do
-                        span.false-toggle-switch
+          tr.even:bg-gray-100
+            td.pl-3.text-center
+              span.font-bold = product.name
+              span.font-thin =< product.product_brand.name
+            td
+              | {PRECIO_LISTA}
+              
+            = render 'product_formula_column', price_formula: cost_price
+            = render 'product_formula_column', price_formula: credit_price
+            = render 'product_formula_column', price_formula: pp_cash_price
+            = render 'product_formula_column', price_formula: cash_price
+            = render 'product_formula_column', price_formula: expo_pp_cash_price
+            = render 'product_formula_column', price_formula: expo_card_price
+            = render 'product_formula_column', price_formula: christmas_pp_cash_price
+            = render 'product_formula_column', price_formula: christmas_cash_price
 
   br
 

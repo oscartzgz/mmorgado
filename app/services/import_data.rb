@@ -83,9 +83,6 @@ class ImportData
       end
       false
     end
-  # rescue NoMethodError
-  #   byebug
-  #   false
   end
 
   def open_spreadsheet

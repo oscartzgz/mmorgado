@@ -1,0 +1,2 @@
+module Providers::PurchasesHelper
+end

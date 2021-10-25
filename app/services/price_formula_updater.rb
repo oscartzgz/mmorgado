@@ -3,8 +3,14 @@
 # the price formula for all brands if providers need it
 class PriceFormulaUpdater
   DEFAULT_FORMULAS = {
-                    price_cost: "21+31+10",
-                    general:    "21+31+10"}
+                    cost_price: '+6.8',
+                    credit_price: '+111',
+                    pp_cash_price: '-15',
+                    cash_price: '-15',
+                    expo_pp_cash_price: '+14',
+                    expo_card_price: '+14',
+                    christmas_pp_cash_price: '+12',
+                    christmas_cash_price: '+12' }
 
   def initialize(objects)
     @objects = objects.respond_to?(:each) ? objects : [objects]
@@ -12,35 +18,65 @@ class PriceFormulaUpdater
   end
 
   def self.update_all_brands_prices
-    DEFAULT_FORMULAS.each do |kind, formula|
+    data_to_update = []
+
+    Provider.distributor.each do |provider|
       ProductBrand.all.each do |product_brand|
-        Provider.all.each do |provider|
-          price_formula = provider.price_formulas.create(
+        DEFAULT_FORMULAS.each do |kind, formula|
+          data_to_update << {
             name: kind,
+            kind: kind,
             formula: formula,
             priceable_id: product_brand.id,
-            priceable_type: ProductBrand.to_s
-          )
-          puts "ERROR: #{price_formula.errors.full_messages}" if price_formula.errors
+            priceable_type: ProductBrand.to_s,
+            provider_id: provider.id,
+            created_at: Time.now,
+            updated_at: Time.now
+          }
         end
       end
     end
+
+    Provider.maker.each do |provider|
+      product_brand = ProductBrand.where(name: provider.full_name).take
+
+      DEFAULT_FORMULAS.each do |kind, formula|
+        data_to_update << {
+          name: kind,
+          kind: kind,
+          formula: formula,
+          priceable_id: product_brand.id,
+          priceable_type: ProductBrand.to_s,
+          provider_id: provider.id,
+          created_at: Time.now,
+          updated_at: Time.now
+        }
+      end
+    end
+
+    PriceFormula.upsert_all(data_to_update)
   end
 
   def self.update_all_products_prices
-    DEFAULT_FORMULAS.each do |kind, formula|
-      Product.all.each do |product|
-        Provider.all.each do |provider|
-          price_formula = provider.price_formulas.create(
-            name: kind,
-            formula: formula,
-            priceable_id: product.id,
-            priceable_type: Product.to_s
-          )
-          puts "ERROR: #{price_formula.errors.full_messages}" if price_formula.errors
-        end
+    data_to_update = []
+
+    Product.all.each do |product|
+      DEFAULT_FORMULAS.each do |kind, formula|
+        data_to_update << {
+          name: kind,
+          kind: kind,
+          formula: formula,
+          priceable_id: product.id,
+          priceable_type: Product.to_s,
+          provider_id: product.provider.id,
+          created_at: Time.now,
+          updated_at: Time.now
+        }
+        # puts "ERROR: #{price_formula.errors.full_messages}" if price_formula.errors
       end
     end
+
+    PriceFormula.upsert_all(data_to_update)
   end
 
   def update
@@ -64,6 +100,7 @@ class PriceFormulaUpdater
         formulas_attributes = Provider.where(kind: 'Distribuidor').map do |provider|
           {
             name: kind,
+            kind: kind,
             formula: formula,
             provider_id: provider.id,
             priceable_id: product_brand.id,
@@ -77,6 +114,7 @@ class PriceFormulaUpdater
         Provider.where('lower(full_name) = ?', product_brand.name.downcase).each do |provider|
           price_formula = provider.price_formulas.find_or_create_by(
             name: kind,
+            kind: kind,
             formula: formula,
             priceable_id: product_brand.id,
             priceable_type: @object_class.to_s
@@ -92,6 +130,7 @@ class PriceFormulaUpdater
 
       price_formula = product.provider.price_formulas.create(
         name: kind,
+        kind: kind,
         formula: formula,
         priceable_id: product.id,
         priceable_type: @object_class.to_s

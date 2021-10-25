@@ -8,7 +8,12 @@ class PriceFormulasController < ApplicationController
     @q = PriceFormula.ransack(params[:q])
     @price_formulas = @q.result(distinct: true)
 
-    @provider = @q.base.conditions.blank? ? nil : Provider.find(@q.base.conditions.dig(0).values.dig(0).value.to_i)
+    @provider = @q.base.conditions.blank? ? 
+                nil
+                : 
+                Provider.
+                  includes(:products, :price_formulas).
+                  find(@q.base.conditions.dig(0).values.dig(0).value.to_i)
    
     @price_formulas_by_brand = @price_formulas #.where(priceable_type: 'Brand')
   end
