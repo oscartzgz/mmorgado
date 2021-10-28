@@ -3,7 +3,9 @@ class Provider < ApplicationRecord
 
   has_many :products, dependent: :destroy
   has_many :price_formulas
-  # has_many :product_brands, through: :products
+  has_many :contacts, class_name: 'ProviderContact'
+
+  accepts_nested_attributes_for :contacts
 
   validates :code, uniqueness: true
   validates :full_name, uniqueness: true

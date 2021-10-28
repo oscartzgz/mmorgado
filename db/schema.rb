@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_24_184740) do
+ActiveRecord::Schema.define(version: 2021_10_28_194352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -150,6 +150,19 @@ ActiveRecord::Schema.define(version: 2021_10_24_184740) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "provider_contacts", force: :cascade do |t|
+    t.string "full_name", null: false
+    t.string "role"
+    t.string "email"
+    t.string "phone_number"
+    t.string "mobile_number"
+    t.boolean "primary_contact", default: false
+    t.bigint "provider_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["provider_id"], name: "index_provider_contacts_on_provider_id"
+  end
+
   create_table "providers", force: :cascade do |t|
     t.string "full_name"
     t.string "phone_number"
@@ -189,4 +202,5 @@ ActiveRecord::Schema.define(version: 2021_10_24_184740) do
   add_foreign_key "products", "product_categories"
   add_foreign_key "products", "providers"
   add_foreign_key "profiles", "users"
+  add_foreign_key "provider_contacts", "providers"
 end
