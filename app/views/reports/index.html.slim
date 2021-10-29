@@ -1,0 +1,31 @@
+.bg-white.m-16.px-10.py-7.rounded-lg.shadow
+  = form_with url: reports_url, method: :get do |f|
+    .flex.gap-16
+      .flex.flex-col.gap-5
+        h2.text-2xl.font-bold Reportes
+
+        .flex.gap-2.items-center
+          = f.radio_button :report, :price_list
+          = f.label :report_price_list, 'Lista de Precios'
+        .flex.gap-2.items-center
+          = f.radio_button :report, :price_list_detailed
+          = f.label :report_price_list_detailed, 'Lista de Precios Detallada'
+        .flex.gap-2.items-center
+          = f.radio_button :report, :stock_list
+          = f.label :report_stock_list, 'Lista de Stock'
+        .flex.gap-2.items-center
+          = f.radio_button :report, :stock_list_detailed
+          = f.label :report_stock_list_detailed, 'Lista de Stock Detallada'
+        .flex.gap-2.items-center
+          = f.radio_button :report, :daily_sales
+          = f.label :report_daily_sales, 'Venta Diaria'
+        .flex.gap-2.items-center
+          = f.radio_button :report, :daily_sales_cash
+          = f.label :report_daily_sales_cash, 'Venta Diaria Contados'
+        .flex.gap-2.items-center
+          = f.radio_button :report, :daily_sales_aparts
+          = f.label :report_daily_sales_aparts, 'Venta Diaria Apartados'
+      .flex
+        div.self-end.justify-self-end
+          button.bg-green-600.text-white.py-3.px-10.rounded.shadow Generar Reporte
+
