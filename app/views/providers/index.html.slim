@@ -17,20 +17,18 @@
         th.px-2.text-center width="150" Tipo
         th.px-2.text-center width="150" Telefono
         th.px-2 Dirección
-        th.px-2.text-center width="200" Contacto
+        th.px-2.text-center width="200" Contacto Principal
         th.px-2
 
     tbody
       - @providers.each do |provider|
         tr
-          td.px-2 = provider.full_name
+          td.px-2 = link_to provider.full_name, provider, class: 'text-blue-600'
           td.px-2.text-center = provider.kind
           td.px-2.text-center = provider.phone_number
           td.px-2 = provider.address
-          td.px-2.text-center = provider.contact_full_name
+          td.px-2.text-center = provider.contacts.primary&.take&.full_name
           td.px-2.text-right
-            = link_to 'Ver', provider
-            =<> "|"
             = link_to 'Editar', edit_provider_path(provider)
             =<> "|"
             = link_to 'Eliminar', provider, data: { confirm: 'Are you sure?' }, method: :delete

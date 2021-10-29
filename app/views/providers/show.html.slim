@@ -1,44 +1,53 @@
 .bg-white.m-16.p-5.rounded-lg.shadow
-  p
-    strong Full name:
-    = @provider.full_name
+  .container.mb-5
+    h1.text-xl.font-bold Información del Proveedor
+    hr
+    p
+      strong Nombre:
+      = @provider.full_name
 
-  p
-    strong Phone number:
-    = @provider.phone_number
+    p
+      strong Numero de Télefono:
+      = @provider.phone_number
 
-  p
-    strong Address:
-    = @provider.address
+    p
+      strong Dirección:
+      = @provider.address
 
-  p
-    strong City:
-    = @provider.city
+    p
+      strong Ciudad:
+      = @provider.city
 
-  p
-    strong Country:
-    = @provider.country
+    p
+      strong País:
+      = @provider.country
 
-  p
-    strong Postal code:
-    = @provider.postal_code
+    p
+      strong Código Postal:
+      = @provider.postal_code
 
-  p
-    strong Contact full name:
-    = @provider.contact_full_name
+  .container.mb-5
+    h2.text-lg.font-bold Contactos
+    hr
 
-  p
-    strong Contact email:
-    = @provider.contact_email
+    - @provider.contacts.order(primary_contact: :asc).each do |contact|
+      .grid.grid-cols-5
+        p
+          strong Nombre:
+          = contact.full_name
 
-  p
-    strong Contact phone number:
-    = @provider.contact_phone_number
+        p
+          strong Email:
+          = contact.email
 
-  p
-    strong Contact mobile number:
-    = @provider.contact_mobile_number
+        p
+          strong Numero de Teléfono:
+          = contact.phone_number
 
-  => link_to 'Edit', edit_provider_path(@provider)
+        p
+          strong Numero de Móvil:
+          = contact.mobile_number
+
+  => link_to 'Atrás', providers_path
   '|
-  =< link_to 'Back', providers_path
+  =< link_to 'Editar', edit_provider_path(@provider), class: 'bg-blue-500 text-white text-sm rounded px-4 py-0.5'

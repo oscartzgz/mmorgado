@@ -20,7 +20,9 @@ Rails.application.routes.draw do
   resources :products
   resources :product_brands
   resources :product_categories
-  resources :providers
+  resources :providers do
+    resources :provider_contacts 
+  end
   resources :clients
   devise_for :users
   get 'home/index'

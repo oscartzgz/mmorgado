@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 2021_10_28_194352) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -102,8 +101,8 @@ ActiveRecord::Schema.define(version: 2021_10_28_194352) do
   end
 
   create_table "product_categories", force: :cascade do |t|
-    t.string "name"
-    t.boolean "active"
+    t.string "name", null: false
+    t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -167,13 +166,10 @@ ActiveRecord::Schema.define(version: 2021_10_28_194352) do
     t.string "full_name"
     t.string "phone_number"
     t.string "address"
+    t.string "state"
     t.string "city"
     t.string "country"
     t.string "postal_code"
-    t.string "contact_full_name"
-    t.string "contact_email"
-    t.string "contact_phone_number"
-    t.string "contact_mobile_number"
     t.datetime "created_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "updated_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.string "code", null: false

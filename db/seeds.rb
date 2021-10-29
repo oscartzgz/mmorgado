@@ -8,3 +8,8 @@
 User.destroy_all
 admin = User.create_with(username: 'admin', password: "Morgado12$", role: :admin).find_or_create_by(email: "admin@mmorgado.com")
 admin.create_profile
+
+ProductCategory.destroy_all
+['Línea Blanca', 'Muebles'].each do |category|
+  ProductCategory.create name: category
+end

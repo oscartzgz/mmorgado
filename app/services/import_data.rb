@@ -10,15 +10,12 @@ class ImportData
     nombre:             :full_name,
     tipo:               :kind,
     correo:             :email,
-    num_fijo:           :phone_number,
     direccion:          :address,
+    numero_tel:         :phone_number,
     ciudad:             :city,
+    estado:             :state,
     pais:               :country,
-    codigo_postal:      :postal_code,
-    nombre_contacto:    :contact_full_name,
-    correo_contacto:    :contact_email,
-    num_fijo_contacto:  :contact_phone_number,
-    num_movil_contacto: :contact_mobile_number
+    codigo_postal:      :postal_code
   }
 
   CLIENT_ATTRIBS = {

@@ -15,6 +15,7 @@
     "postcss": "^8.2.10",
     "postcss-loader": "^4.0.3",
     "sass": "^1.32.7",
+    "stimulus": "^3.0.1",
     "tailwindcss": "^2.2.7",
     "turbolinks": "^5.2.0"
   },

@@ -10,12 +10,18 @@
     = f.input :country, as: :string, label: 'País', wrapper_class: 'col-span-2'
     = f.input :postal_code, label: 'Código Postal', wrapper_class: 'col-span-2'
   br
-  h2.text-lg.font-bold.mb-3 Contacto
-  .container.grid.grid-cols-2.gap-x-3
-    = f.input :contact_full_name, label: 'Nombre Completo'
-    = f.input :contact_email, label: 'Correo'
-    = f.input :contact_phone_number, label: 'Número de Teléfono Móvil'
-    = f.input :contact_mobile_number, label: 'Número de Teléfono Fijo'
+  h2.text-lg.font-bold.mb-3 Contactos
+  .container data-controller="nested-form"
+    template data-target="nested-form.template"
+      = f.fields_for :contacts, ProviderContact.new, child_index: 'TEMPLATE_RECORD' do |contact|
+        = render 'contact_fields', form: contact
 
+    = f.fields_for :contacts do |contact|
+      = render 'contact_fields', form: contact
+
+    div.text-center data-target="nested-form.add_item"
+      = link_to '+ Añadir Contacto', '#',
+                data: { action: 'click->nested-form#add_association'},
+                class: 'bg-green-500 text-white px-4 py-1 rounded text-sm'
   .form-actions.mt-4
     = f.button :submit
