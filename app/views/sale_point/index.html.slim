@@ -16,7 +16,6 @@
        th Fecha
        th Tipo
        th Apartado
-       th Eliminar
        th Saldo Favor
       tbody
         tr
@@ -24,13 +23,12 @@
           td.client-address.text-center NA
           td.client-date.text-center = Date.today.strftime('%d/%b/%Y')
           td.text-center
-            select
+            select.bg-blue-800.text-white.rounded-lg.px-7.py-0.5
               option PP
-              option cash
+              option Cash
+              option Mixto
           td.text-center
             input type="checkbox"
-          td.text-center
-            span.bg-red-500.text-white.px-3.py-0.5.rounded-lg X
           td.text-center $0.00
 
   .flex-grow
