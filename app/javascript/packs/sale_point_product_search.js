@@ -45,7 +45,14 @@ class ProductSearch {
     .then(response => response.json())
     .then(data => {
       tr = `
-        <tr data-cost-price="${data.cost_price}">
+        <tr data-code="${data.code}"
+            data-name="${data.name}"
+            data-price="${data.cost_price}"
+            data-cost-price="${data.cost_price}"
+            data-kind="0"
+            data-payment_type=""
+            data-orderable-type="Product"
+            data-orderable-id="${data.id}">
           <td class="px-4 py-1">
             <small>${data.code}</small>
           </td>
@@ -54,15 +61,17 @@ class ProductSearch {
             <i>${data.model}</i>
           </td>
           <td class="px-4 py-1 text-center">
-            <select>
-              <option selected>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
+            <select class="item-quantity">
+              <option value="1" selected>1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
             </select>
           </td>
           <td class="px-4 py-1">${toCurrency(data.cost_price)}</td>

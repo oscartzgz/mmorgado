@@ -1,0 +1,58 @@
+.bg-white.m-16.p-10.rounded-lg.shadow
+  .grid.grid-cols-3
+    div
+    = image_tag  "LogoMM.png", width: '320px', class: 'my-10'
+    .actions
+      .flex.flex-col.items-end.gap-7
+        button.border-2.border-green-400.py-2.rounded-full.w-36.text-2xl.text-green-400.shadow-lg Vender
+        button.border-2.border-yellow-200.py-2.rounded-full.w-36.text-2xl.text-yellow-400.shadow-lg Imprimir
+
+  .px-5.mb-10
+    .flex.gap-5.w-full
+      .section
+        .div
+          span> Venta: 
+          = @order.code
+        .div
+          span> Fecha:
+          = @order.created_at.strftime('%d/%m/%Y')
+        .div
+          span> Vendedor:
+          = @order.seller.profile.full_name
+        .div
+          span> Cajero:
+          = @order.cashier.profile.full_name
+        .div
+          span> Cliente:
+          = @order.client.full_name
+      .section
+        .div
+          span> Tipo:
+        .div
+          span> Hora:
+          = @order.created_at.strftime('%-H:%M')
+      .section.actions.flex-grow.flex.justify-end.items-end
+        div
+          button.text-red-500.border-red-400.border-2.px-5.py-1.rounded.font-bold Cancelar Venta
+      
+  .section
+    table.w-full
+      thead.bg-gray-100.rounded-t-sm.text-gray-400
+        th width="200" Código
+        th Articulo
+        th Cantidad
+        th Precio de Venta
+        th Importe
+      tbody
+        - @order.order_items.each do |item|
+          tr
+            td.px-5.py-3.text-center
+              = item.code
+            td.px-5.py-3.text-center
+              = item.name
+            td.px-5.py-3.text-center
+              = item.quantity
+            td.px-5.py-3.text-center
+              = number_to_currency item.price
+            td.px-5.py-3.text-center
+              = number_to_currency item.import

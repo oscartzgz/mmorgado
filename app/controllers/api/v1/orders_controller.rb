@@ -13,6 +13,7 @@ class Api::V1::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.cashier_id = current_user.id
+    # @order.orderable_type = 'Product' if @order.kind == 0
     
     if @order.save
       render json: @order, status: :created
@@ -24,7 +25,11 @@ class Api::V1::OrdersController < ApplicationController
   private
   
   def order_params
-    params.require(:order).permit(:code, :payment_type, :client_id, :seller_id, :cashier_id)
+    params.require(:order).permit(:code, :payment_type, :client_id, :seller_id, :cashier_id,
+                                  order_items_attributes: [
+                                    :id, :code, :name, :quantity, :price, :kind,
+                                    :payment_type, :order_id, :orderable_id, :orderable_type,
+                                    :_destroy])
   end
 
   # def set_client

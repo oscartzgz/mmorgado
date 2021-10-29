@@ -10,6 +10,7 @@ class Order {
     this.client = ""
     this.payment_type = ""
     this.seller = ""
+    this.order_items = []
 
     this.csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
   }
@@ -33,7 +34,8 @@ class Order {
           code: this.code,
           client_id: this.client,
           payment_type: this.payment_type,
-          seller_id: this.seller
+          seller_id: this.seller,
+          order_items_attributes: this.order_items
         }
       }
 
@@ -48,7 +50,8 @@ class Order {
       .then(response => response.json())
       .then(data => {
         alert("LA ORDEN SE GENERO CORRECTAMENTE")
-      });
+        if (!data.errors) Turbolinks.visit(`/orders/${data.id}`)
+      })
     }
   }
 
@@ -58,12 +61,30 @@ class Order {
     this.payment_type = document.getElementById('order_payment_type').value
     this.seller = document.getElementById('order_seller').value
 
+    this.order_items = []
+
+    this.table.querySelectorAll('tbody tr').forEach((item) => {
+      let itemData = {
+        code: item.dataset.code,
+        name: item.dataset.name,
+        quantity: item.querySelector('.item-quantity').value,
+        price: item.dataset.price,
+        kind: item.dataset.kind,
+        payment_type: "",
+        orderable_id: item.dataset.orderableId, 
+        orderable_type: item.dataset.orderableType
+      }
+
+      this.order_items.push(itemData)
+    })
+
     not_finded = []
 
     if (!this.code) not_finded.push("Código")
     if (!this.client) not_finded.push("Cliente")
     if (!this.payment_type) not_finded.push("Tipo de Pago").value
     if (!this.seller) not_finded.push("Vendedor")
+    if (this.order_items == 0) not_finded.push("FALTAN PRODUCTOS")
 
     if (not_finded.length > 0) {
       alert(`FALTAN DATOS: ${not_finded.join(", ")}`)
