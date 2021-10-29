@@ -14,6 +14,7 @@ require("./users")
 require("./price_formulas")
 require("./sale_point_client_search")
 require("./sale_point_product_search")
+require("./sale_point_order")
 require("./providers_purchases")
 
 // Uncomment to copy all static images under ../images to the output folder and reference

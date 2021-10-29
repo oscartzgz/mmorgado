@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   post 'admin/import'
   namespace :api do
     namespace :v1 do
-      resources :clients, only: %i(index show)
-      resources :providers, only: %i(index)
-      resources :products, only: %i(index show)
+      resources :clients, only: %w(index show)
+      resources :providers, only: %w(index)
+      resources :products, only: %w(index show)
+      resources :orders, only: %w(create)
     end
   end
   resources :price_formulas do

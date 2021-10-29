@@ -18,15 +18,15 @@
        th Apartado
        th Saldo Favor
       tbody
-        tr
+        tr#order_client data-id=""
           td.client-name.text-center.py-1 -----
           td.client-address.text-center NA
           td.client-date.text-center = Date.today.strftime('%d/%b/%Y')
           td.text-center
-            select.bg-blue-800.text-white.rounded-lg.px-7.py-0.5
-              option PP
-              option Cash
-              option Mixto
+            select#order_payment_type.bg-blue-800.text-white.rounded-lg.px-7.py-0.5
+              option value="0" PP
+              option value="1" Cash
+              option value="2" Mixto
           td.text-center
             input type="checkbox"
           td.text-center $0.00
@@ -52,17 +52,17 @@
     .flex.flex-col.gap-5
       .flex.align-items-end.justify-start
         button.w-32.bg-yellow-300.px-3.text-blue-800.text-lg.font-bold Vendedor
-        select.w-72
+        select#order_seller.w-72
           - User.all.each do |user|
             option value=(user.id) = user.profile&.full_name
 
       .flex.align-items-end.justify-start
         button.w-32.bg-yellow-300.px-3.text-blue-800.text-lg.font-bold Nota No
-        input.w-32 type="text"
+        input#order_code.w-32 type="text"
     div
       .flex.align-items-end.justify-end
         button.bg-blue-500.px-3.text-white Agregar Flete
         input type="text"
         button.bg-blue-500.px-3.text-white DESC
       .flex.align-items-end.justify-end.mt-5
-        button.bg-blue-400.px-3.text-2xl.text-white.rounded.px-16.py-2 Realizar Venta
+        button#create_order.bg-blue-400.px-3.text-2xl.text-white.rounded.px-16.py-2 Realizar Venta

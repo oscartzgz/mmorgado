@@ -41,6 +41,7 @@ class ClientSearch {
     })
     .then(response => response.json())
     .then(data => {
+      document.getElementById('order_client').dataset.id = data.id
       document.querySelector('.client-name').textContent = data.full_name
       document.querySelector('.client-address').textContent = data.full_address
     })
