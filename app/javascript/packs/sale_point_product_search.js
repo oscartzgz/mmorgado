@@ -1,7 +1,10 @@
+var toCurrency = require('./utils').toCurrency
+
 class ProductSearch {
   constructor(search_input){
     this.search_input = search_input
     this.search_results = document.getElementById('sp_search_product_results')
+    this.table = document.getElementById('sale_products_list')
     this.initListeners()
   }
 
@@ -41,17 +44,61 @@ class ProductSearch {
     })
     .then(response => response.json())
     .then(data => {
-      // document.querySelector('.product-name').textContent = data.name
-      // document.querySelector('.product-address').textContent = data.full_address
+      tr = `
+        <tr data-cost-price="${data.cost_price}">
+          <td class="px-4 py-1">
+            <small>${data.code}</small>
+          </td>
+          <td class="px-4 py-1">
+            ${data.name}
+            <i>${data.model}</i>
+          </td>
+          <td class="px-4 py-1 text-center">
+            <select>
+              <option selected>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+            </select>
+          </td>
+          <td class="px-4 py-1">${toCurrency(data.cost_price)}</td>
+          <td class="import px-4 py-1">${toCurrency(data.cost_price)}</td>
+          <td class="px-4 py-1 text-center">
+            <button class="bg-red-500 text-white px-2 py-0.5 rounded text-sm">Eliminar</button>
+          </td>
+        </tr>
+      `
+      tbody = document.getElementById('sale_products_list').querySelector('tbody')
+      tbody.insertAdjacentHTML('beforeend', tr)
+      this.appendListenersToNewSaleProduct()
+    })
+
+  }
+
+  appendListenersToNewSaleProduct() {
+    let tr = this.table.querySelector('tbody tr:last-child')
+    let cost_price = tr.dataset.costPrice
+    let col_import = tr.querySelector('.import')
+
+    tr.querySelector('select').addEventListener('change', (e) => {
+      let import_calc = cost_price * e.target.value
+      col_import.textContent = toCurrency(import_calc)
+    })
+
+    tr.querySelector('button').addEventListener('click', (e) => {
+      e.preventDefault()
+      tr.remove()
     })
   }
 
   appendListenersToNewItems() {
     this.search_results.querySelectorAll('li button.add-product-button').forEach((product) => {
       product.addEventListener('click', (e) => {
-        console.log(e.target)
         e.preventDefault()
-        // this.search_input.value = 'e.target.dataset.text'
         this.search_results.classList.add('hidden')
         this.selectProduct(e.target.dataset.value)
       })
@@ -76,7 +123,7 @@ class ProductSearch {
           <div>${product.name}</div>
           <small>${product.code}</small>
           <div>
-            <strong>Precio: 4000</strong>
+            <strong>Precio: ${toCurrency(product.cost_price)}</strong>
           </div>
 
           <div>

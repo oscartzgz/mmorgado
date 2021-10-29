@@ -35,26 +35,19 @@
 
   .flex-grow
     input#sp_search_product.h-12.w-full.px-5.py-0.5.text-lg.rounded-full type="text" placeholder="Buscar Productos" /
-    #sp_search_product_results.p-3.left-4.right-4.bg-white.border-l-2.border-b-2.border-r-2.border-gray-400.shadow.rounded-b-lg.hidden
+    #sp_search_product_results.p-3.left-4.right-4.bg-white.border-l-2.border-2.border-r-2.border-gray-400.shadow.rounded-lg.hidden
       ul.grid.grid-cols-7.gap-4
 
   .bg-white.my-10.rounded-lg.shadow.overflow-hidden
-    table.w-full.table-fixed
+    table#sale_products_list.w-full.table-fixed
       thead.bg-gray-200.text-gray-500
-       th.py-1 Código
+       th.py-1 width="150" Código
        th Producto
-       th Cantidad
+       th width="150"  Cantidad
        th Precio de Venta
        th Importe
-       th Eliminar
+       th width="150" Eliminar
       tbody
-        tr
-          td.h-16.p-16
-          td
-          td
-          td
-          td
-          td
 
   .flex.align-items-end.justify-end
     button.bg-blue-500.px-3.text-white Agregar Flete
