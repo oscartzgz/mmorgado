@@ -49,9 +49,22 @@
        th width="150" Eliminar
       tbody
 
-  .flex.align-items-end.justify-end
-    button.bg-blue-500.px-3.text-white Agregar Flete
-    input type="text"
-    button.bg-blue-500.px-3.text-white DESC
-  .flex.align-items-end.justify-end.mt-5
-    button.bg-blue-400.px-3.text-2xl.text-white.rounded.px-16.py-2 Realizar Venta
+
+  .grid.grid-cols-2
+    .flex.flex-col.gap-5
+      .flex.align-items-end.justify-start
+        button.w-32.bg-yellow-300.px-3.text-blue-800.text-lg.font-bold Vendedor
+        select.w-72
+          - User.all.each do |user|
+            option value=(user.id) = user.profile&.full_name
+
+      .flex.align-items-end.justify-start
+        button.w-32.bg-yellow-300.px-3.text-blue-800.text-lg.font-bold Nota No
+        input.w-32 type="text"
+    div
+      .flex.align-items-end.justify-end
+        button.bg-blue-500.px-3.text-white Agregar Flete
+        input type="text"
+        button.bg-blue-500.px-3.text-white DESC
+      .flex.align-items-end.justify-end.mt-5
+        button.bg-blue-400.px-3.text-2xl.text-white.rounded.px-16.py-2 Realizar Venta
