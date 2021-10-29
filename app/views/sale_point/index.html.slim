@@ -33,9 +33,10 @@
             span.bg-red-500.text-white.px-3.py-0.5.rounded-lg X
           td.text-center $0.00
 
-  input#sp_search_client.h-12.w-full.px-5.py-0.5.text-lg.rounded-full
-  #sp_search_product_results.absolute.p-3.top-12.left-4.right-4.bg-white.border-l-2.border-b-2.border-r-2.border-gray-400.shadow.rounded-b-lg.hidden
-    ul
+  .flex-grow
+    input#sp_search_product.h-12.w-full.px-5.py-0.5.text-lg.rounded-full type="text" placeholder="Buscar Productos" /
+    #sp_search_product_results.p-3.left-4.right-4.bg-white.border-l-2.border-b-2.border-r-2.border-gray-400.shadow.rounded-b-lg.hidden
+      ul.grid.grid-cols-7.gap-4
 
   .bg-white.my-10.rounded-lg.shadow.overflow-hidden
     table.w-full.table-fixed

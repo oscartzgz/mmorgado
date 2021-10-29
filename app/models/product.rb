@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  include PgSearch::Model
+
   belongs_to :provider
   belongs_to :product_brand
   belongs_to :product_category
@@ -14,6 +16,23 @@ class Product < ApplicationRecord
 
   after_create do
     PriceFormulaUpdater.new(self).update
+  end
+
+  pg_search_scope :search_scope_full,
+                  against: [:name, :code],
+                  using: {
+                    tsearch: {
+                      any_word: true
+                    },
+                    trigram: {
+                      threshold: 0.1
+                    }
+                  }
+
+  def self.search(params)
+    products = self.all.order(name: :asc)
+    products = products.search_scope_full(params[:full_data]) if params[:full_data]
+    products
   end
 
   def self.out_of_minimum_stock
