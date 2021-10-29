@@ -1,0 +1,15 @@
+.nested-fields.w-full.mb-5
+  .grid.grid-cols-12.gap-y-1.gap-x-2.w-full
+    = form.hidden_field :_destroy
+    = form.input :full_name, label: "Nombre completo", wrapper_html: { class: 'col-span-4' }
+    = form.input :role, label: "Cargo", wrapper_html: { class: 'col-span-2' }
+    = form.input :email, label: "Email", wrapper_html: { class: 'col-span-3' }
+    = form.input :mobile_number, as: :boolean, label: "¿Contacto Principal?", wrapper_html: { class: 'col-span-3 self-center' }
+    = form.input :phone_number, label: "Telefono Fijo", wrapper_html: { class: 'col-span-3' }
+    = form.input :mobile_number, label: "Telefono Móvil", wrapper_html: { class: 'col-span-3' }
+
+    small.self-end.mb-4.col-span-6.justify-self-end
+      = link_to 'Eliminar', '#',
+                data: { action: 'click->nested-form#remove_association' },
+                class: 'text-white bg-red-500 px-5 py-2 rounded'
+hr.my-5
