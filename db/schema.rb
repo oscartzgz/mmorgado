@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_28_194352) do
+ActiveRecord::Schema.define(version: 2021_10_29_163027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -69,6 +69,35 @@ ActiveRecord::Schema.define(version: 2021_10_28_194352) do
     t.decimal "positive_balance", precision: 10, scale: 2, default: "0.0"
     t.string "code", null: false
     t.index ["code"], name: "index_clients_on_code"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.integer "quantity"
+    t.decimal "price", precision: 10, scale: 2, default: "0.0"
+    t.integer "kind"
+    t.integer "payment_type"
+    t.bigint "order_id", null: false
+    t.string "orderable_type"
+    t.bigint "orderable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["orderable_type", "orderable_id"], name: "index_order_items_on_orderable"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "code"
+    t.string "payment_type"
+    t.bigint "client_id", null: false
+    t.bigint "seller_id", null: false
+    t.bigint "cashier_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cashier_id"], name: "index_orders_on_cashier_id"
+    t.index ["client_id"], name: "index_orders_on_client_id"
+    t.index ["seller_id"], name: "index_orders_on_seller_id"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
@@ -195,6 +224,10 @@ ActiveRecord::Schema.define(version: 2021_10_28_194352) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "clients"
+  add_foreign_key "orders", "users", column: "cashier_id"
+  add_foreign_key "orders", "users", column: "seller_id"
   add_foreign_key "products", "product_brands"
   add_foreign_key "products", "product_categories"
   add_foreign_key "products", "providers"
