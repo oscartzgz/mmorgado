@@ -4,9 +4,7 @@
       input#sp_search_client.client-search.h-12.w-full.px-5.py-0.5.text-lg.rounded-full type="text" placeholder="Buscar Cliente" /
       #sp_search_results.absolute.p-3.top-12.left-4.right-4.bg-white.border-l-2.border-b-2.border-r-2.border-gray-400.shadow.rounded-b-lg.hidden
         ul
-          li.cursor-pointer.hover:bg-blue-500.hover:text-white onclick="alert(this)" Opción 1
-          li.cursor-pointer.hover:bg-blue-500.hover:text-white Opción 2
-          li.cursor-pointer.hover:bg-blue-500.hover:text-white Opción 3
+
     .flex.flex-column
     = link_to 'Nuevo Cliente', new_client_path, class: 'flex items-center font-bold inline-block text-center bg-green-500 text-white rounded-lg px-5 whitespace-nowrap'
 
@@ -22,18 +20,22 @@
        th Saldo Favor
       tbody
         tr
-          td.text-center.py-1 -----
-          td.text-center NA
-          td.text-center 20/03/2022
-          td.text-center PP
+          td.client-name.text-center.py-1 -----
+          td.client-address.text-center NA
+          td.client-date.text-center = Date.today.strftime('%d/%b/%Y')
+          td.text-center
+            select
+              option PP
+              option cash
           td.text-center
             input type="checkbox"
           td.text-center
             span.bg-red-500.text-white.px-3.py-0.5.rounded-lg X
           td.text-center $0.00
 
-  select.client-search.h-12.w-full.px-5.py-0.5.text-lg.rounded-full
-    option value="" Agregar Artículo 
+  input#sp_search_client.h-12.w-full.px-5.py-0.5.text-lg.rounded-full
+  #sp_search_product_results.absolute.p-3.top-12.left-4.right-4.bg-white.border-l-2.border-b-2.border-r-2.border-gray-400.shadow.rounded-b-lg.hidden
+    ul
 
   .bg-white.my-10.rounded-lg.shadow.overflow-hidden
     table.w-full.table-fixed
