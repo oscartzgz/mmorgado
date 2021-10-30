@@ -29,3 +29,9 @@
         div.self-end.justify-self-end
           button.bg-green-600.text-white.py-3.px-10.rounded.shadow Generar Reporte
 
+  br
+  br
+  h2.text-xl.font-bold Previsualización del reporte
+  hr.my-3
+  = render @report_type, report_data: @report_data unless @report_type.nil?
+  br

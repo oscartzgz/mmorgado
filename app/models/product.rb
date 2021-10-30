@@ -5,6 +5,7 @@ class Product < ApplicationRecord
   belongs_to :product_brand
   belongs_to :product_category
   has_many :price_formulas, as: :priceable
+  has_many :order_items
 
   validates :code, presence: true
   validates :name, presence: true

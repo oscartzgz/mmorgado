@@ -1,0 +1,23 @@
+table.w-full
+  thead.bg-gray-100
+    th Fecha
+    th Cliente
+    th width="150" Cantidad Vendida (Unidades de Stock)
+    th Código
+    th Producto
+    th Marca
+    th Modelo
+    th Descripción
+    th Contados Marca
+  tbody
+    - @report_data&.each do |item|
+      tr
+        td.px-3 = item.order.created_at.strftime('%d/%b/%Y')
+        td.px-3 = item.order.client.full_name
+        td.px-3 = item.quantity
+        td.px-3 = item.code
+        td.px-3 = item.name
+        td.px-3 = item.orderable&.product_brand&.name
+        td.px-3 = item.orderable&.model
+        td.px-3 = item.orderable&.description
+        td.px-3 ???

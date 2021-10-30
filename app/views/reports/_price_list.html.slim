@@ -1,0 +1,21 @@
+table.w-full
+  thead.bg-gray-100
+    th Código
+    th Producto
+    th Marca
+    th Modelo
+    th Descripción
+    th Precio Tarjeta Expo
+    th Precio Contado Expo
+    th Cantidad Unicos
+  tbody
+    - @report_data&.each do |item|
+      tr
+        td.px-3 = item.code
+        td.px-3 = item.name
+        td.px-3 = item.product_brand.name
+        td.px-3 = item.model
+        td.px-3 = item.description
+        td.px-3 ???
+        td.px-3 ???
+        td.px-3 ???
