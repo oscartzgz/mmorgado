@@ -12,7 +12,6 @@ class Api::V1::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    byebug
     @order.cashier_id = current_user.id
     # @order.orderable_type = 'Product' if @order.kind == 0
     
