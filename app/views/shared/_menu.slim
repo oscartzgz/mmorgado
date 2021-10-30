@@ -20,9 +20,9 @@ div.app-menu.flex.flex-col.justify-between
             | Ventas
         - if controller_name == 'sale_point' || controller_name == 'orders'
           ul.mt-0.5.bg-white
-            li.pl-5
+            li.pl-7
               = link_to orders_path, class: "px-4 py-3 text-sm flex items-center gap-5 cursor-pointer #{'active' if controller_name == 'orders' }" do
-                svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"
                   path stroke="none" d="M0 0h24v24H0z" fill="none"/
                   line x1="9" y1="6" x2="20" y2="6" /
                   line x1="9" y1="12" x2="20" y2="12" /
@@ -64,11 +64,14 @@ div.app-menu.flex.flex-col.justify-between
           svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
             path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
           | Cobros & Pagos
-        li.px-4.py-3.text-sm.flex.items-center.gap-5.cursor-pointer
-          svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-            path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
-            path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
-          | Fletes
+        li
+          = link_to freights_path, class: "px-4 py-3 text-sm flex items-center gap-5 cursor-pointer #{'active' if controller_name == 'freights' }" do
+            svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"
+              path stroke="none" d="M0 0h24v24H0z" fill="none"/
+              circle cx="7" cy="17" r="2" /
+              circle cx="17" cy="17" r="2" /
+              path d="M5 17h-2v-11a1 1 0 0 1 1 -1h9v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5" /
+            | Fletes
 
   .user-logout.shrink-grow.text-center
     = link_to destroy_user_session_path, method: :delete, class: 'block pb-5' do

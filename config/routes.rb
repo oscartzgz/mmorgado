@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get 'toggle'
     end
   end
+  resources :freights, only: %w(index)
   resources :reports, only: %w(index)
   resources :orders, only: %w(index show)
   resources :sale_point, only: :index

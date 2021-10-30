@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  client: one
+  kind: 1
+  import: 9.99
+  order: one
+  user: one
+
+two:
+  client: two
+  kind: 1
+  import: 9.99
+  order: two
+  user: two

@@ -3,10 +3,10 @@
     .flex.gap-4
       .flex.flex-col
         = f.label "Desde"
-        = f.date_field :start_date, class: 'w-48'
+        = f.date_field :start_date, class: 'w-48', required: true
       .flex.flex-col
         = f.label "Hasta"
-        = f.date_field :start_date, class: 'w-48'
+        = f.date_field :start_date, class: 'w-48', required: true
       div.flex-grow.flex.justify-end
         button.bg-blue-500.text-white.px-5.rounded-lg BUSCAR
 

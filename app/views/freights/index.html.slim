@@ -1,0 +1,38 @@
+.container.mt-16.mx-16.mb-3
+  = search_form_for @q do |f|
+    = f.search_field :order_code_cont, placeholder: 'Buscar Flete', class: 'rounded-l-lg'
+    = f.submit 'Buscar', class: 'bg-blue-400 text-white px-3 py-2 rounded-r-lg'
+
+.bg-white.mx-16.p-5.rounded-lg.shadow
+  h1.text-xl.mb-5.font-bold Lista de Fletes
+
+  /= link_to '+ Nuevo flete', new_freight_path, class: 'float-right bg-green-600 text-white px-3 rounded'
+  .container.w-full.overflow-x-auto
+    table.w-full.table-fixed
+      thead.bg-gray-200
+        tr
+          th Flete
+          th Telefono
+          th Dirección
+          th Saldo favor
+          th Contacto
+          th
+
+      tbody
+        - @freights.each do |freight|
+          tr
+            td = freight.full_name
+            td = freight.mobile_number
+            td = freight.full_address
+            td
+            td = freight.endorsement_full_name
+            td
+              div
+                = link_to 'Show', freight
+                =<> "|"
+                = link_to 'Edit', edit_freight_path(freight)
+                =<> "|"
+                = link_to 'Destroy', freight, data: { confirm: 'Are you sure?' }, method: :delete
+
+  br
+

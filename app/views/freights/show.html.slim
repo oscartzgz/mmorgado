@@ -1,0 +1,80 @@
+.bg-white.m-16.p-5.rounded-lg.shadow
+  p
+    strong Name:
+    = @client.name
+
+  p
+    strong First surname:
+    = @client.first_surname
+
+  p
+    strong Second surname:
+    = @client.second_surname
+
+  p
+    strong Address:
+    = @client.address
+
+  p
+    strong Location:
+    = @client.location
+
+  p
+    strong State:
+    = @client.state
+
+  p
+    strong Country:
+    = @client.country
+
+  p
+    strong Postal code:
+    = @client.postal_code
+
+  p
+    strong Email:
+    = @client.email
+
+  p
+    strong Mobile number:
+    = @client.mobile_number
+
+  p
+    strong Phone number:
+    = @client.phone_number
+
+  p
+    strong Endorsement full name:
+    = @client.endorsement_full_name
+
+  p
+    strong Endorsement mobile phone:
+    = @client.endorsement_mobile_phone
+
+  p
+    strong Endorsement phone number:
+    = @client.endorsement_phone_number
+
+  p
+    strong Endorsement address:
+    = @client.endorsement_address
+
+  p
+    strong Endorsement location:
+    = @client.endorsement_location
+
+  p
+    strong Endorsement country:
+    = @client.endorsement_country
+
+  p
+    strong Endorsement postal code:
+    = @client.endorsement_postal_code
+
+  p
+    strong Endorsement relationship:
+    = @client.endorsement_relationship
+
+  => link_to 'Edit', edit_client_path(@client)
+  '|
+  =< link_to 'Back', clients_path
