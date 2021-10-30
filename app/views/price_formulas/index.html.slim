@@ -73,7 +73,7 @@
 
       - if @priceable_target == :brands
         tbody
-          - @provider.product_brands.includes(:price_formulas).all.each do |brand|
+          - @provider&.product_brands&.includes(:price_formulas)&.all&.each do |brand|
             - formula_price = brand.price_formulas.where(kind: :cost_price)&.take
             - formula_credit_price = brand.price_formulas.where(kind: :credit_price)&.take
             - formula_pp_cash_price = brand.price_formulas.where(kind: :pp_cash_price)&.take
