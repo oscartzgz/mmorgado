@@ -8,7 +8,7 @@
         button.border-2.border-yellow-200.py-2.rounded-full.w-36.text-2xl.text-yellow-400.shadow-lg Imprimir
 
   .px-5.mb-10
-    .flex.gap-5.w-full
+    .flex.gap-10.w-full
       .section
         .div
           span> Venta: 
@@ -31,6 +31,36 @@
         .div
           span> Hora:
           = @order.created_at.strftime('%-H:%M')
+        .div
+          span> Contra entrega:
+          = @order.cash_on_delivery ? 'Sí' : 'No'
+      .section.flex.flex-col.justify-between
+        - if @order.delivered
+          div.text-center
+            <svg xmlns="http://www.w3.org/2000/svg" class="text-green-500 inline mr-5" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <polyline points="12 3 20 7.5 20 16.5 12 21 4 16.5 4 7.5 12 3" />
+              <line x1="12" y1="12" x2="20" y2="7.5" />
+              <line x1="12" y1="12" x2="12" y2="21" />
+              <line x1="12" y1="12" x2="4" y2="7.5" />
+              <line x1="16" y1="5.25" x2="8" y2="9.75" />
+            </svg>
+            span.text-xl.text-green-500.font-bold ENTREGADO
+          = link_to toogle_delivered_order_path, class: 'border-2 border-red-400 text-red-500 font-bold px-5 py-2 mb-2 rounded' do
+            = @order.delivered ? 'Cambiar a NO ENTREGADO' : 'Cambiar a ENTREGADO'
+            
+        - else
+          div.text-center
+            <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 inline mr-5" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <circle cx="7" cy="17" r="2" />
+              <circle cx="17" cy="17" r="2" />
+              <path d="M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5" />
+              <line x1="3" y1="9" x2="7" y2="9" />
+            </svg>
+            span.text-xl.text-yellow-500.font-bold En Camino
+          = link_to toogle_delivered_order_path, class: 'border-2 border-green-400 text-green-500 font-bold px-5 py-2 mb-2 rounded' do
+            = @order.delivered ? 'Cambiar a NO ENTREGADO' : 'Cambiar a ENTREGADO'
       .section.actions.flex-grow.flex.justify-end.items-end
         div
           button.text-red-500.border-red-400.border-2.px-5.py-1.rounded.font-bold Cancelar Venta

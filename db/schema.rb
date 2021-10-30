@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_30_014446) do
+ActiveRecord::Schema.define(version: 2021_10_30_073941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -108,6 +108,9 @@ ActiveRecord::Schema.define(version: 2021_10_30_014446) do
     t.bigint "cashier_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "delivered", default: false
+    t.boolean "payed", default: false
+    t.boolean "cash_on_delivery", default: false
     t.index ["cashier_id"], name: "index_orders_on_cashier_id"
     t.index ["client_id"], name: "index_orders_on_client_id"
     t.index ["seller_id"], name: "index_orders_on_seller_id"

@@ -16,6 +16,7 @@
        th Fecha
        th Tipo
        th Apartado
+       th Contra Entrega
        th Saldo Favor
       tbody
         tr#order_client data-id=""
@@ -29,6 +30,8 @@
               option value="2" Mixto
           td.text-center
             input type="checkbox"
+          td.text-center
+            input#cash_on_delivery type="checkbox"
           td.text-center $0.00
 
   .flex-grow

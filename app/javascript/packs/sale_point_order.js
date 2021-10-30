@@ -11,6 +11,7 @@ class Order {
     this.code = ""
     this.client = ""
     this.payment_type = ""
+    this.cash_on_delivery = ""
     this.seller = ""
     this.order_items = []
 
@@ -100,6 +101,7 @@ class Order {
         order: {
           code: this.code,
           client_id: this.client,
+          cash_on_delivery: this.cash_on_delivery,
           payment_type: this.payment_type,
           seller_id: this.seller,
           order_items_attributes: this.order_items
@@ -127,6 +129,7 @@ class Order {
     this.client = document.getElementById('order_client').dataset.id
     this.payment_type = document.getElementById('order_payment_type').value
     this.seller = document.getElementById('order_seller').value
+    this.cash_on_delivery = document.getElementById('cash_on_delivery').value
 
     this.order_items = []
 

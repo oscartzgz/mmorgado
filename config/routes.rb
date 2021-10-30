@@ -19,7 +19,11 @@ Rails.application.routes.draw do
   end
   resources :freights, only: %w(index)
   resources :reports, only: %w(index)
-  resources :orders, only: %w(index show)
+  resources :orders, only: %w(index show) do
+    member do
+      get 'toogle_delivered'
+    end
+  end
   resources :sale_point, only: :index
   resources :inventory, only: :index
   resources :products
