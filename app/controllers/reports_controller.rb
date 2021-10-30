@@ -37,17 +37,17 @@ class ReportsController < ApplicationController
 
   def daily_sales
     @report_type = 'daily_sales'
-    @report_data = OrderItem.all
+    @report_data = OrderItem.all.where(kind: :product)
   end
 
   def daily_sales_cash
     @report_type = 'daily_sales_cash'
-    @report_data = OrderItem.all
+    @report_data = OrderItem.all.where(kind: :product)
   end
 
   def daily_sales_aparts
     @report_type = 'daily_sales_aparts'
-    @report_data = OrderItem.all
+    @report_data = OrderItem.all.where(kind: :product)
   end
   
 end

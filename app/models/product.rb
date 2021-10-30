@@ -20,13 +20,13 @@ class Product < ApplicationRecord
   end
 
   pg_search_scope :search_scope_full,
-                  against: [:name, :code],
+                  against: [:code, :name],
                   using: {
                     tsearch: {
                       any_word: true
                     },
                     trigram: {
-                      threshold: 0.1
+                      threshold: 0.2
                     }
                   }
 

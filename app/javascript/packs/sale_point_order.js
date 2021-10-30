@@ -5,6 +5,8 @@ class Order {
     this.button = button
     this.search_results = document.getElementById('sp_search_product_results')
     this.table = document.getElementById('sale_products_list')
+    this.add_freight_button = document.getElementById('add_freight')
+    this.extra_import_input = document.getElementById('extra_import_input')
     this.initListeners()
     this.code = ""
     this.client = ""
@@ -19,14 +21,79 @@ class Order {
     this.button.addEventListener('click', (e) => {
       this.createOrder(e)
     })
-    // this.search_input.addEventListener('focusin', (e) => {
-    //   this.search_results.classList.remove('hidden')
-    //   this.searchProducts(e)
-    // })
+
+    this.add_freight_button.addEventListener('click', (e) => {
+      e.preventDefault()
+      this.addFreight()
+    })
+  }
+
+  addFreight() {
+    if (this.validateExtraImporInputValue()) {
+      price = this.extra_import_input.value
+
+      let tr = `
+        <tr data-code="FLT"
+            data-name="Flete"
+            data-price="${price}"
+            data-kind="freight"
+            data-payment_type=""
+            data-orderable-type="Freight"
+            data-orderable-id="">
+          <td class="px-4 py-1">
+            <small></small>
+          </td>
+          <td class="px-4 py-1">Flete</td>
+          <td class="px-4 py-1 text-center">
+            <select class="item-quantity">
+              <option value="1" selected>1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </td>
+          <td class="px-4 py-1">${toCurrency(price)}</td>
+          <td class="import px-4 py-1">${toCurrency(price)}</td>
+          <td class="px-4 py-1 text-center">
+            <button class="bg-red-500 text-white px-2 py-0.5 rounded text-sm">Eliminar</button>
+          </td>
+        </tr>
+      `
+      tbody = document.getElementById('sale_products_list').querySelector('tbody')
+      tbody.insertAdjacentHTML('beforeend', tr)
+      this.appendListenersToNewSaleProduct()
+    } else {
+      alert("SOLO NUMEROS ENTEROS")
+    }
+  }
+
+  validateExtraImporInputValue(){
+    return !isNaN(this.extra_import_input.value) && Number.isInteger(parseFloat(this.extra_import_input.value));
+  }
+
+  appendListenersToNewSaleProduct() {
+    let tr = this.table.querySelector('tbody tr:last-child')
+    let cost_price = tr.dataset.price
+    let col_import = tr.querySelector('.import')
+
+    tr.querySelector('select').addEventListener('change', (e) => {
+      let import_calc = cost_price * e.target.value
+      col_import.textContent = toCurrency(import_calc)
+    })
+
+    tr.querySelector('button').addEventListener('click', (e) => {
+      e.preventDefault()
+      tr.remove()
+    })
   }
 
   createOrder(e) {
-    console.log(`validation is: ${this.validateData()}`)
     if (this.validateData()) {
 
       let object = {

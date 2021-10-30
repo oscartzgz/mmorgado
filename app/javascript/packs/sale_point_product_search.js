@@ -49,7 +49,7 @@ class ProductSearch {
             data-name="${data.name}"
             data-price="${data.cost_price}"
             data-cost-price="${data.cost_price}"
-            data-kind="0"
+            data-kind="product"
             data-payment_type=""
             data-orderable-type="Product"
             data-orderable-id="${data.id}">

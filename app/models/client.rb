@@ -11,7 +11,7 @@ class Client < ApplicationRecord
                   against: [:name, :first_surname, :second_surname],
                   using: {
                     tsearch: {
-                      any_word: true
+                      any_word: false
                     },
                     trigram: {
                       threshold: 0.1

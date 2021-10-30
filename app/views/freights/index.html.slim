@@ -11,28 +11,31 @@
     table.w-full.table-fixed
       thead.bg-gray-200
         tr
-          th Flete
-          th Telefono
-          th Dirección
-          th Saldo favor
-          th Contacto
-          th
+          th width="120" Flete
+          th Cliente
+          th Tipo
+          th Fecha de registro
+          th width="150" Importe
+          th width="150" Venta
+          th width="150"
 
       tbody
         - @freights.each do |freight|
           tr
-            td = freight.full_name
-            td = freight.mobile_number
-            td = freight.full_address
-            td
-            td = freight.endorsement_full_name
-            td
+            td.px-5.py-3.text-center = freight.id
+            td.px-5.py-3.text-center = freight.client.full_name
+            td.px-5.py-3.text-center = freight.kind
+            td.px-5.py-3.text-center = freight.created_at
+            td.px-5.py-3.text-center = number_to_currency freight.import
+            td.px-5.py-3.text-center = freight.order&.code
+            td.px-5.py-3.text-center
               div
-                = link_to 'Show', freight
-                =<> "|"
-                = link_to 'Edit', edit_freight_path(freight)
-                =<> "|"
-                = link_to 'Destroy', freight, data: { confirm: 'Are you sure?' }, method: :delete
+                = link_to 'Venta', order_path(freight.order), class: 'border-2 border-green-200 px-3 rounded text-green-600'
+                /= link_to 'Show', freight
+                /=<> "|"
+                /= link_to 'Edit', edit_freight_path(freight)
+                /=<> "|"
+                /= link_to 'Destroy', freight, data: { confirm: 'Are you sure?' }, method: :delete
 
   br
 
